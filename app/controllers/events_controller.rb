@@ -1,7 +1,7 @@
 class EventsController < ApplicationController
     def index 
         events = Event.all
-        render json: events, include: :reviews
+        render json: events
     end 
 
     def show
