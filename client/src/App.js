@@ -1,7 +1,7 @@
 import React from "react";
 import './App.css';
 import SignUpForm from "./SignUpForm";
-import UserHomePage from "./UserHomePage";
+import HomePage from "./HomePage";
 import NavBar from "./NavBar";
 import Login from "./Login";
 import { UserProvider } from "./context/user";
@@ -16,7 +16,7 @@ function App() {
       <NavBar/>
        <Switch>
         <Route exact path ="/">
-          <UserHomePage />
+          <HomePage />
         </Route>
         <Route exact path ="/signup">
           <SignUpForm/>

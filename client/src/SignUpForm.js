@@ -9,7 +9,7 @@ function SignUpForm(){
 
     return(
         <form>
-        <label for="uname">Username:</label><br/>
+        <label htmlFor="uname">Username:</label><br/>
         <input
           type="text"
           id="username"
@@ -17,14 +17,14 @@ function SignUpForm(){
           value={username}
           onChange={(e) => setUsername(e.target.value)}
         />
-        <label for="email">Email:</label><br/>
+        <label htmlFor="email">Email:</label><br/>
         <input
           type="text"
           id="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
-        <label for="password">Password:</label><br/>
+        <label htmlFor="password">Password:</label><br/>
         <input
           type="password"
           id="password"
@@ -32,7 +32,7 @@ function SignUpForm(){
           onChange={(e) => setPassword(e.target.value)}
           autoComplete="current-password"
         />
-        <label for="pw confirmation">Password Confirmation:</label><br/>
+        <label htmlFor="pw confirmation">Password Confirmation:</label><br/>
         <input
           type="password"
           id="password_confirmation"
@@ -40,7 +40,7 @@ function SignUpForm(){
           onChange={(e) => setPasswordConfirmation(e.target.value)}
           autoComplete="current-password"
         />
-        <label for="prof img">Profile Image:</label><br/>
+        <label htmlFor="prof img">Profile Image:</label><br/>
         <input
           type="text"
           id="imageUrl"
