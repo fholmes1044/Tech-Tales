@@ -5,6 +5,7 @@ class CreateReviews < ActiveRecord::Migration[6.1]
       t.integer :event_id
       t.boolean :recommend
       t.string :summary
+      
 
       t.timestamps
     end
