@@ -1,14 +1,22 @@
-import React, { useState } from "react"
+import React, { useState, useContext } from "react"
+import { UserContext } from "./context/user";
 
-function SignUpForm(){
-    const [username, setUsername] = useState("");
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
-    const [passwordConfirmation, setPasswordConfirmation] = useState("");
-    const [imageUrl, setImageUrl] = useState("");
+const SignUpForm = () => {
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [passwordConfirmation, setPasswordConfirmation] = useState("");
+  const [fullName, setFullName] = useState(" ")
+  const [age, setAge] = useState("")
+  const [email, setEmail] = useState("")
+  const [errorsList, setErrorsList] = useState([]);
+  const {signup} = useContext(UserContext);
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+  }
 
     return(
-        <form>
+        <form onSubmit={handleSubmit}>
         <label htmlFor="uname">Username:</label><br/>
         <input
           type="text"
@@ -16,13 +24,6 @@ function SignUpForm(){
           autoComplete="off"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
-        />
-        <label htmlFor="email">Email:</label><br/>
-        <input
-          type="text"
-          id="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
         />
         <label htmlFor="password">Password:</label><br/>
         <input
@@ -40,14 +41,27 @@ function SignUpForm(){
           onChange={(e) => setPasswordConfirmation(e.target.value)}
           autoComplete="current-password"
         />
-        <label htmlFor="prof img">Profile Image:</label><br/>
+        <label htmlFor="fullname">Full Name:</label><br/>
         <input
           type="text"
-          id="imageUrl"
-          value={imageUrl}
-          onChange={(e) => setImageUrl(e.target.value)}
+          id="fullname"
+          value={fullName}
+          onChange={(e) => setFullName(e.target.value)}
         />
-        
+        <label htmlFor="age">Age:</label><br/>
+        <input
+          type="text"
+          id="age"
+          value={age}
+          onChange={(e) => setAge(e.target.value)}
+        />
+        <label htmlFor="email">Email:</label><br/>
+        <input
+          type="text"
+          id="email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        />
         <input type="submit"/>
         
         </form>
