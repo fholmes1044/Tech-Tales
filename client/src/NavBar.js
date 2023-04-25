@@ -1,4 +1,5 @@
-import React from "react";
+import React, {useContext} from "react";
+import { UserContext } from "./context/user";
 import { NavLink } from "react-router-dom";
 
 const linkStyles = {
@@ -12,9 +13,14 @@ const linkStyles = {
 };
 
 function NavBar() {
+const {user, logout} = useContext(UserContext)
 
   return (
     <div id="navbar">
+
+      <h1> Hello </h1>
+      <br/>
+      <button onClick={logout}></button>
       <NavLink
         to="/"
         exact
@@ -27,14 +33,14 @@ function NavBar() {
       </NavLink>
      
       <NavLink
-        to="/hosts"
+        to="/events"
         exact
         style={linkStyles}
         activeStyle={{
           background: "darkblue",
         }}
       >
-        Hosts
+        Events
       </NavLink>
     </div>
   );

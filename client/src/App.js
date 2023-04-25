@@ -25,7 +25,6 @@ function App() {
           <Login/>
         </Route>
       </Switch> 
-      <SignUpForm/>
       </UserProvider>
     </div>
   );

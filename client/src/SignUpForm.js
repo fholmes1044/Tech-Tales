@@ -49,6 +49,7 @@ function handleSubmit (e) {
 
     return(
       <div>
+        <h3>Signup</h3>
         <form onSubmit={handleSubmit}>
         <label htmlFor="uname">Username:</label>
         <input
