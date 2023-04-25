@@ -15,12 +15,21 @@ const linkStyles = {
 function NavBar() {
 const {user, logout} = useContext(UserContext)
 
+const logoutUser = (e) => {
+  e.preventDefault()
+  fetch("/logout")
+    .then(() =>{
+      logout()
+    })
+}
+
+if (user) {
   return (
     <div id="navbar">
 
-      <h1> Hello </h1>
+      <h1> Hello {user.full_name}</h1>
       <br/>
-      <button onClick={logout}></button>
+      
       <NavLink
         to="/"
         exact
@@ -42,8 +51,20 @@ const {user, logout} = useContext(UserContext)
       >
         Events
       </NavLink>
+      <button onClick={logout}>Sign Out</button>
     </div>
   );
+}else {
+  return (
+    <div>
+      <NavLink
+      to="/login">
+        <button>Login</button>
+      </NavLink>
+    </div>
+  )
+}
+  
 }
 
 export default NavBar;

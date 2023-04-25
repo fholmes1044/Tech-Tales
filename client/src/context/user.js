@@ -13,11 +13,11 @@ function UserProvider({ children }) {
         })
     }, [])
     const login = () => {
-
+        setUser(user)
     }
 
     const logout = () => {
-
+        setUser(null)
     }
 
     const signup = (user) => {

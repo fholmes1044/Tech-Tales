@@ -9,7 +9,18 @@ function Login(){
 
     const handleSubmit = (e) =>{
         e.preventDefault()
-
+        fetch("/login",{
+            method: "POST",
+            headers: { "Content-Type" : 'application/json'},
+            body: JSON.stringify({
+                username: userName,
+                password: password
+            })
+        })
+        .then(res => res.json())
+        .then((user) => {
+            login(user)
+        })
             }
             
     return(
