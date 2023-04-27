@@ -1,5 +1,6 @@
 import React, { useState, useContext } from "react"
 import { UserContext } from "./context/user";
+import { useHistory } from "react-router-dom";
 
 const SignUpForm = () => {
   const [username, setUsername] = useState("");
@@ -10,6 +11,7 @@ const SignUpForm = () => {
   const [email, setEmail] = useState("")
   const [errorsList, setErrorsList] = useState([]);
   const {signup} = useContext(UserContext);
+  const history = useHistory()
 
 function handleSubmit (e) {
     e.preventDefault()
@@ -32,7 +34,7 @@ function handleSubmit (e) {
     .then(user => {
       if (!user.errors){
         signup(user)
-        // history.push('/')
+        history.push('/')
       }else {
         setUsername("")
         setPassword("")
@@ -43,9 +45,8 @@ function handleSubmit (e) {
         const errorLis = user.errors.map(error => <li>{error}</li> )
         setErrorsList(errorLis)
       }
-    })
-
-  }
+      })
+    }
 
     return(
       <div>

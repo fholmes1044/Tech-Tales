@@ -1,6 +1,6 @@
 import React, {useContext} from "react";
 import { UserContext } from "./context/user";
-import { NavLink } from "react-router-dom";
+import { NavLink , useHistory} from "react-router-dom";
 
 const linkStyles = {
   display: "inline-block",
@@ -13,17 +13,19 @@ const linkStyles = {
 };
 
 function NavBar() {
-const {user, logout} = useContext(UserContext)
+const {user, logout, loggedIn} = useContext(UserContext)
+const history = useHistory()
 
 const logoutUser = (e) => {
   e.preventDefault()
   fetch("/logout")
     .then(() =>{
       logout()
+      history.push("/")
     })
 }
-
-if (user) {
+console.log(loggedIn,"logged")
+if (loggedIn ) {
   return (
     <div id="navbar">
 
@@ -51,15 +53,20 @@ if (user) {
       >
         Events
       </NavLink>
-      <button onClick={logout}>Sign Out</button>
+      <button onClick={logoutUser}>Sign Out</button>
     </div>
   );
 }else {
   return (
     <div>
+      
       <NavLink
       to="/login">
         <button>Login</button>
+      </NavLink>
+      <NavLink
+        to="/signup">
+        <button>Signup</button>
       </NavLink>
     </div>
   )
