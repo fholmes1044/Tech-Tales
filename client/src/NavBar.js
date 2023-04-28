@@ -1,6 +1,7 @@
 import React, {useContext} from "react";
 import { UserContext } from "./context/user";
 import { NavLink , useHistory} from "react-router-dom";
+// import { NavLink } from "react-router-dom/cjs/react-router-dom.min";
 
 const linkStyles = {
   display: "inline-block",
@@ -18,18 +19,25 @@ const history = useHistory()
 
 const logoutUser = (e) => {
   e.preventDefault()
-  fetch("/logout")
+  fetch("/logout",{
+    method: "DELETE",
+    headers: {
+      "Content-type": "application/json"
+    },
+  })
     .then(() =>{
+      console.log("Testing logout")
       logout()
       history.push("/")
     })
 }
-console.log(loggedIn,"logged")
+console.log(loggedIn,"loggedStatus")
 if (loggedIn ) {
   return (
     <div id="navbar">
 
       <h1> Hello {user.full_name}</h1>
+      {/* <h1>hi</h1> */}
       <br/>
       
       <NavLink
@@ -59,7 +67,6 @@ if (loggedIn ) {
 }else {
   return (
     <div>
-      
       <NavLink
       to="/login">
         <button>Login</button>

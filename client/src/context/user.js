@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react";
+import { useHistory} from "react-router-dom"
 
 const UserContext = React.createContext();
 
 function UserProvider({ children }) {
-    const [user, setUser] = useState(null)
+    const [user, setUser] = useState({})
     const [loggedIn, setLoggedIn] = useState(false)
+    const history = useHistory()
 
     useEffect(() => {
         fetch("/me")
@@ -20,8 +22,11 @@ function UserProvider({ children }) {
     }
 
     const logout = () => {
-        setUser(null)
+        console.log(user, "inside logout function")
+        
+        setUser({})
         setLoggedIn(false)
+        history.push("/")  
     }
 
     const signup = (user) => {
