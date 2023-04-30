@@ -16,6 +16,7 @@ function UserProvider({ children }) {
             data.error ? setLoggedIn(false) : setLoggedIn(true)
         })
     }, [])
+
     const login = () => {
         setUser(user)
         setLoggedIn(true)

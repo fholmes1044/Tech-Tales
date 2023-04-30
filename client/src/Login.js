@@ -5,24 +5,31 @@ import { useHistory} from "react-router-dom";
 function Login(){
     const [userName, setUsername] = useState("")
     const [password, setPassword] = useState("")
-    const [error, setError] = useState("")
+    const [errors, setErrors] = useState("")
     const {login} = useContext(UserContext)
     const history = useHistory()
 
-    const handleSubmit = (e) =>{
+function handleSubmit (e){
         e.preventDefault()
-        fetch("/login",{
+        fetch("/login", {
             method: "POST",
-            headers: { "Content-Type" : 'application/json'},
+            headers: { 
+                "Content-Type" : 'application/json'
+            },
             body: JSON.stringify({
                 username: userName,
                 password: password
             })
         })
         .then(res => res.json())
-        .then((user) => {
-            login(user)
-            history.push("/")
+        .then(user => {
+            if(!user.errors){
+                login(user)
+                history.push("/")
+            }else {
+                const errorList = user.errors.map(error => <li>{error}</li> )
+                setErrors(errorList)
+            }
         })
             }
             
@@ -48,7 +55,7 @@ function Login(){
                 <input type="submit"/>
             </form>
             <ul>
-                <h3>{error}</h3>
+                {errors}
             </ul>
         </div> 
     )

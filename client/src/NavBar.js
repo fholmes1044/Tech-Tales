@@ -26,13 +26,12 @@ const logoutUser = (e) => {
     },
   })
     .then(() =>{
-      console.log("Testing logout")
       logout()
       history.push("/")
     })
 }
-console.log(loggedIn,"loggedStatus")
-if (loggedIn ) {
+
+  if (loggedIn) {
   return (
     <div id="navbar">
 

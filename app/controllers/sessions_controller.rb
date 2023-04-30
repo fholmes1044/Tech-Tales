@@ -18,6 +18,5 @@ class SessionsController < ApplicationController
         else
             render json: { errors: ["Unauthorized"] }, status: :unauthorized
         end
-        # session.clear
     end 
 end
