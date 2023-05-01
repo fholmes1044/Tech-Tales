@@ -8,6 +8,7 @@ import { UserProvider } from "./context/user";
 import { Switch, Route } from "react-router-dom";
 import NewEventForm from "./NewEventForm";
 
+
 function App() {
   const [allEvents, setAllEvents] = useState([])
 
@@ -36,6 +37,9 @@ function App() {
           <Login/>
         </Route>
         <Route exact path ="/events">
+          <NewEventForm/>
+        </Route>
+        <Route exact path ="/reviews">
           <NewEventForm/>
         </Route>
       </Switch> 

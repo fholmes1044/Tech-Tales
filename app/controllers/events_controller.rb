@@ -1,9 +1,12 @@
 class EventsController < ApplicationController
 
-    before_action :authorize
+    # before_action :authorize
 
     def index 
-        events = Event.all
+        user = User.find_by(id: session[:user_id])
+        if user
+            events = Event.all
+            render json: events
         render json: events
     end 
 
@@ -15,8 +18,13 @@ class EventsController < ApplicationController
         end
     end 
 
-    private
-    def authorize
-        return render json: { error: "Not authorized" }, status: :unauthorized unless session.include? :user_id
-    end
+    def create
+        # if user 
+        #     event = Event.create(user_id)
+    end 
+
+    # private
+    # def authorize
+    #     return render json: { error: "Not authorized" }, status: :unauthorized unless session.include? :user_id
+    # end
 end

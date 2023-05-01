@@ -40,6 +40,7 @@ function NewEventForm(){
             organizer: "",
             date: ""
         })
+        console.log("new event", newEvent)
         // addNewEvent(newEvent)
        
     })

@@ -60,6 +60,17 @@ const logoutUser = (e) => {
       >
         Events
       </NavLink>
+
+      <NavLink
+        to="/reviews"
+        exact
+        style={linkStyles}
+        activeStyle={{
+          background: "darkblue",
+        }}
+      >
+        Reviews
+      </NavLink>
       <button onClick={logoutUser}>Sign Out</button>
     </div>
   );
