@@ -7,7 +7,8 @@ function UserProvider({ children }) {
     const [user, setUser] = useState({})
     const [loggedIn, setLoggedIn] = useState(false)
     const history = useHistory()
-
+console.log("user", user)
+console.log("li", loggedIn)
     useEffect(() => {
         fetch("/me")
         .then(res => res.json())
@@ -17,8 +18,8 @@ function UserProvider({ children }) {
         })
     }, [])
 
-    const login = () => {
-        setUser(user)
+    const login = (userobj) => {
+        setUser(userobj)
         setLoggedIn(true)
     }
 

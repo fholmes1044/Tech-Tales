@@ -22,12 +22,13 @@ function handleSubmit (e){
             })
         })
         .then(res => res.json())
-        .then(user => {
-            if(!user.errors){
-                login(user)
+        .then(response => {
+            if(!response.errors){
+                console.log("re", response)
+                login(response)
                 history.push("/")
             }else {
-                const errorList = user.errors.map(error => <li>{error}</li> )
+                const errorList = response.errors.map(error => <li>{error}</li> )
                 setErrors(errorList)
             }
         })
