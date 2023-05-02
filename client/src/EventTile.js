@@ -1,7 +1,12 @@
 import React, {useState} from "react";
 
-function EventTile(){
-
+function EventTile({event}){
+   const {title} = event
+    return(
+        <>
+        <h3>{title}</h3>
+        </>
+    )
     
 }
 

@@ -1,7 +1,8 @@
-import React,{useState} from "react";
+import React,{useState, useContext} from "react";
+import { UserContext } from "./context/user";
 
 function ReviewsDisplay(){
-    
+    const {user} = useContext(UserContext)
     return(
         <div>
             <form>
@@ -11,4 +12,4 @@ function ReviewsDisplay(){
     )
 }
 
-export default ReviewsDisplay
+export default ReviewsDisplay;

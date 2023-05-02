@@ -1,12 +1,18 @@
-import React, {useState} from "react";
+import React, {useContext} from "react";
 import EventTile from "./EventTile";
+import { UserContext } from "./context/user";
 
 function EventsDisplay(){
-    
+    const {user} = useContext(UserContext)
+    console.log("U", user)      
+     
 return(
-    <div>
-
-    </div>
+    
+    user.events && user.events.length > 0 ? user.events.map((event) => (
+        <EventTile key={event.id} event={event} />
+    )) : <p>There are no events </p> 
+    
+    
 )
 }
 

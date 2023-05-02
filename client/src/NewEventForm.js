@@ -48,6 +48,7 @@ function NewEventForm(){
 
     return(
         <div>
+            <h3>Add New Event</h3>
             <form onSubmit={handleSubmit}>
                 <input type="text" value={newEventData.title} name="title" placeholder="Event Title" onChange={handleNewEventInput}/>
                 <input type="text" value={newEventData.event_description} name="event_description" placeholder="Event Description" onChange={handleNewEventInput}/>

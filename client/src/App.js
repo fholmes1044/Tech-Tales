@@ -1,4 +1,4 @@
-import React,{ useState, useEffect} from "react";
+import React from "react";
 import './App.css';
 import SignUpForm from "./SignUpForm";
 import HomePage from "./HomePage";
@@ -7,19 +7,30 @@ import Login from "./Login";
 import { UserProvider } from "./context/user";
 import { Switch, Route } from "react-router-dom";
 import NewEventForm from "./NewEventForm";
+import NewReviewForm from "./NewReviewForm";
+// import { useParams } from "react-router";
+import EventsDisplay from "./EventsDisplay";
+import ReviewsDisplay from "./ReviewsDisplay";
 
 
 function App() {
-  const [allEvents, setAllEvents] = useState([])
+  // const { id } = useParams();
 
-  useEffect(()=>{
-    fetch("/events")
-     .then((data)=> data.json())
-     .then((events) => {
-        setAllEvents(events)
-       console.log("EE",events)
-     })
-  }, [])
+  // useEffect(() => {
+  //   fetch(`/events).then((r) => {
+  //     if (r.ok) {
+  //       r.json().then((event) =>
+  //         setEvents(event)
+  //       );
+  //     } else {
+  //       r.json().then((err) =>
+  //         setEvents(...events)
+  //       );
+  //     }
+  //   });
+  // }, [id]);
+
+
 
   return (
     <div className="App">
@@ -38,10 +49,12 @@ function App() {
           <Login/>
         </Route>
         <Route exact path ="/events">
-          <NewEventForm/>
+          <NewEventForm />
+          <EventsDisplay/>
         </Route>
         <Route exact path ="/reviews">
-          <NewEventForm/>
+          <ReviewsDisplay/>
+          <NewReviewForm/>
         </Route>
       </Switch> 
       </UserProvider>
