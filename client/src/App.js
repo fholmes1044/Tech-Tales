@@ -16,7 +16,8 @@ function App() {
     fetch("/events")
      .then((data)=> data.json())
      .then((events) => {
-      console.log("EE",events)
+        setAllEvents(events)
+       console.log("EE",events)
      })
   }, [])
 
