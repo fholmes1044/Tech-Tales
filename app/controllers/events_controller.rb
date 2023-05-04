@@ -6,8 +6,9 @@ class EventsController < ApplicationController
         user = User.find_by(id: session[:user_id])
         if user
             events = Event.all
-            render json: events
-        render json: events
+            render json: events, include: :reviews
+        end
+        
     end 
 
     def show

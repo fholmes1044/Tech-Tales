@@ -58,7 +58,7 @@ const logoutUser = (e) => {
           background: "darkblue",
         }}
       >
-        Events
+        All Events
       </NavLink>
 
       <NavLink
@@ -69,7 +69,7 @@ const logoutUser = (e) => {
           background: "darkblue",
         }}
       >
-        Reviews
+        My Reviewed Events
       </NavLink>
       <button onClick={logoutUser}>Sign Out</button>
     </div>
