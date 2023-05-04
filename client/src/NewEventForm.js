@@ -1,25 +1,27 @@
 import React, {useState} from "react";
 
-function NewEventForm(){
+function NewEventForm({addNewEvent}){
     const [newEventData, setnewEventData] = useState({
         title: "",
         event_description: "",
         price: "",
-        category: "",
         location: "",
         organizer: "",
         date: ""
 
     })
     const handleNewEventInput = (e) => {
+        
         setnewEventData({
             ...newEventData,
             [e.target.name]: e.target.value
         })
+        // console.log(e.target.name, e.target.value, "NW" ,newEventData.organizer)
     }
 
     const handleSubmit = (e) => {
         e.preventDefault()
+        console.log("NO",newEventData.organizer)
         fetch("/events",{
         method:"POST",
         headers:{
@@ -35,13 +37,12 @@ function NewEventForm(){
             title: "",
             event_description: "",
             price: "",
-            category: "",
             location: "",
             organizer: "",
             date: ""
         })
         console.log("new event", newEvent)
-        // addNewEvent(newEvent)
+        addNewEvent(newEvent)
        
     })
     }
@@ -53,7 +54,6 @@ function NewEventForm(){
                 <input type="text" value={newEventData.title} name="title" placeholder="Event Title" onChange={handleNewEventInput}/>
                 <input type="text" value={newEventData.event_description} name="event_description" placeholder="Event Description" onChange={handleNewEventInput}/>
                 <input type="text" value={newEventData.price} name="price" placeholder="How much did it cost?" onChange={handleNewEventInput}/>
-                <input type="text" value={newEventData.category} name="category" placeholder="Event Category" onChange={handleNewEventInput}/>
                 <input type="text" value={newEventData.location} name="location" placeholder="Where was it located?" onChange={handleNewEventInput}/>
                 <input type="text" value={newEventData.organizer} name="organizer" placeholder="Who is the organizer?" onChange={handleNewEventInput}/>
                 <input type="text" value={newEventData.date} name="date" placeholder="When did it happen" onChange={handleNewEventInput} />

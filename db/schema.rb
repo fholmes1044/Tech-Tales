@@ -19,7 +19,6 @@ ActiveRecord::Schema.define(version: 2023_04_20_035717) do
     t.string "title"
     t.string "event_description"
     t.integer "price"
-    t.string "category"
     t.string "location"
     t.string "organizer"
     t.string "date"
@@ -30,7 +29,6 @@ ActiveRecord::Schema.define(version: 2023_04_20_035717) do
   create_table "reviews", force: :cascade do |t|
     t.integer "user_id"
     t.integer "event_id"
-    t.boolean "recommend"
     t.string "summary"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

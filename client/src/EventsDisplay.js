@@ -14,17 +14,20 @@ function EventsDisplay({allEvents}){
     //     })
     // }, []
     // )
-    console.log("All", allEvents)
+    // console.log("All", allEvents)
     // const displayEvents = allevents.map((event) =>(
     //     <EventTile key={event.id} event={event}/>
     // ))
 return(
     // {displayEvents}
-    user.events && user.events.length > 0 ? allEvents.map((event) => (
-        <EventTile key={event.id} event={event} />
-    )) : <p>There are no events </p> 
-    
-    
+    // user.events && user.events.length > 0 ? allEvents.map((event) => (
+    //     <EventTile key={event.id} event={event} />
+    // )) : <p>There are no events </p> 
+    <>
+    {allEvents.map((event) => (
+         <EventTile key={event.id} event={event} />
+         ))}
+    </>
 )
 }
 
