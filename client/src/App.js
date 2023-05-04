@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import './App.css';
 import SignUpForm from "./SignUpForm";
 import HomePage from "./HomePage";
@@ -14,23 +14,21 @@ import ReviewsDisplay from "./ReviewsDisplay";
 
 
 function App() {
-  // const { id } = useParams();
+  const [allEvents, setAllEvents] = useState([])
+    useEffect(() =>{
+        fetch("/events")
+        .then((r) => r.json())
+        .then((event) =>{
+            setAllEvents(event)
+        })
+    }, []
+    )
 
-  // useEffect(() => {
-  //   fetch(`/events).then((r) => {
-  //     if (r.ok) {
-  //       r.json().then((event) =>
-  //         setEvents(event)
-  //       );
-  //     } else {
-  //       r.json().then((err) =>
-  //         setEvents(...events)
-  //       );
-  //     }
-  //   });
-  // }, [id]);
+    const addNewReview = (newReview) => {
 
+    }
 
+console.log("Events", allEvents)
 
   return (
     <div className="App">
@@ -50,11 +48,11 @@ function App() {
         </Route>
         <Route exact path ="/events">
           <NewEventForm />
-          <EventsDisplay/>
+          <EventsDisplay allEvents={allEvents}/>
         </Route>
         <Route exact path ="/reviews">
           <ReviewsDisplay/>
-          <NewReviewForm/>
+          <NewReviewForm allEvents={allEvents} addNewReview={addNewReview}/>
         </Route>
       </Switch> 
       </UserProvider>

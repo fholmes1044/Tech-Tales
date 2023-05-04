@@ -1,18 +1,12 @@
 import React,{useEffect, useState, useContext} from "react";
 import { UserContext } from "./context/user";
-function NewReviewForm(){
+function NewReviewForm({allEvents, addNewReview}){
     const {user} = useContext(UserContext)
-    const [allEvents, setAllEvents] = useState([])
     const [summary, setSummary] = useState("")
     const [eventId, setEventId] = useState("")
-    
-
     const [errors, setErrors] = useState([])
-    useEffect(() =>{
-        fetch("/events")
-            .then((r) => r.json())
-            .then(setAllEvents);
-    }, [])
+
+    
     const handleSubmit = (e) =>{
         e.preventDefault();
         const formData = {
@@ -32,9 +26,9 @@ function NewReviewForm(){
                         setSummary("");
                         setEventId("");
                         setErrors([]);
-                         // onAddNewReview(review)
+                        addNewReview(review)
                     });   
-                } else {
+            }else {
                 r.json().then((err) => setErrors(err.errors));
             }
         })
@@ -62,12 +56,6 @@ function NewReviewForm(){
                     ) : (
                         <option value="">No events found</option>
                         )}
-                    {/* <option value="">Select Event</option>
-                    {allEvents.map((event) => (
-                        <option key={event.id} value={event.id}>
-                            {event.id}
-                        </option>
-                    ))} */}
                 </select>
                 </div>
                 <div>
