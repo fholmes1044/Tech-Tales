@@ -22,7 +22,8 @@ console.log("R",reviews)
         <p>Description: {event_description}</p>
         <p> Cost: ${price}</p>
         <h4>Reviews</h4>
-        {allReviewsMap}
+        {allReviews.length > 0 ? {allReviewsMap} : "No reviews yet" }
+       
         <hr/>
        </> 
     )
