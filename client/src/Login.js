@@ -28,7 +28,9 @@ function handleSubmit (e){
                 login(response)
                 history.push("/")
             }else {
-                const errorList = response.errors.map(error => <li>{error}</li> )
+                // console.log("r",[response][0])
+                
+                const errorList = [response].map(error => <li key={error.errors}>{error.errors}</li> )
                 setErrors(errorList)
             }
         })
