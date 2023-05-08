@@ -13,7 +13,7 @@ function EventTile({event}){
 //         setAllReviews(reviews.map((review) => review));
 //   }
 
-console.log("R",reviews)
+// console.log("R",reviews)
 
    console.log("ALL", allReviews)
     return(

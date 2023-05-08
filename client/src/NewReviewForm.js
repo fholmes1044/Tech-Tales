@@ -5,34 +5,69 @@ function NewReviewForm({allEvents, addNewReview}){
     const [summary, setSummary] = useState("")
     const [eventId, setEventId] = useState("")
     const [errors, setErrors] = useState([])
-
+console.log("ALL", allEvents)
     
+    // const handleSubmit = (e) =>{
+    //     e.preventDefault();
+    //     const formData = {
+    //         summary: summary,
+    //         event_id: parseInt(eventId),
+    //         user_id: user.id
+    //     }
+    //     console.log("fd", formData)
+    //     fetch("/reviews", {
+    //         method: "POST",
+    //         headers:{
+    //             "Content-Type": "application/json",
+    //         },
+    //         body: JSON.stringify(formData),
+    //     }).then((r) => {
+    //         if (r.ok) {
+    //             r.json().then((review) => {
+    //                 console.log("r", review)
+    //                     setSummary("");
+    //                     setEventId("");
+    //                     setErrors([]);
+    //                     addNewReview(review)
+    //                 });   
+    //         }else {
+    //             r.json().then((err) => setErrors(err.errors));
+    //         }
+    //     })
+    // }
     const handleSubmit = (e) =>{
         e.preventDefault();
         const formData = {
             summary: summary,
-            event_id: eventId,
+            event_id: parseInt(eventId),
             user_id: user.id
         }
+    
         fetch("/reviews", {
             method: "POST",
             headers:{
                 "Content-Type": "application/json",
             },
             body: JSON.stringify(formData),
-        }).then((r) => {
-            if (r.ok) {
-                r.json().then((review) => {
-                        setSummary("");
-                        setEventId("");
-                        setErrors([]);
-                        addNewReview(review)
-                    });   
-            }else {
-                r.json().then((err) => setErrors(err.errors));
+        }).then((response) => {
+            if (response.ok) {
+                return response.json();
+            } else {
+                throw new Error("Network response was not ok");
             }
-        })
+        }).then((data) => {
+            console.log("s", data)
+            console.log("Success:", data);
+            setSummary("");
+            setEventId("");
+            setErrors([]);
+            addNewReview(data);
+        }).catch((error) => {
+            console.error("Error:", error);
+            setErrors([error.message]);
+        });
     }
+    
     return(
         <div>
             <h2> Add New Review </h2>
@@ -44,12 +79,12 @@ function NewReviewForm({allEvents, addNewReview}){
                 value={eventId}
                 onChange={(e) => setEventId(e.target.value)}
                 >
-                    {allEvents > 0 ? (
+                    {allEvents.length > 0 ? (
                         <>
                         <option value="">Select Event</option>
                         {allEvents.map((event) => (
                              <option key={event.id} value={event.id}>
-                             {event.id}
+                             {event.title}
                             </option>
                     ))}
                         </>

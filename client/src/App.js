@@ -44,15 +44,15 @@ useEffect(() =>{
     // )
 
     const addNewReview = (newReview) => {
-      // const updatedReviews = allEvents.map((event) =>{
-      //   if(event.id === newReview.event_id){
-      //       return {...event,reviews:[...event.reviews, newReview]}
-      //   } else {
-      //     return event
-      //   }
-      // })
+      const updatedReviews = allEvents.map((event) =>{
+        if(event.id === newReview.event_id){
+            return {...event,reviews:[...event.reviews, newReview]}
+        } else {
+          return event
+        }
+      })
   
-      // setAllEvents(updatedReviews)
+      setAllEvents(updatedReviews)
     }
 
     const addNewEvent = (newEvent) => {

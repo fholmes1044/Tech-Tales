@@ -20,6 +20,9 @@ function ReviewTile({review}){
         {/* {user.reviews.length > 0 ? {allReviewsMap} : "No reviews yet" } */}
         <h5>Reviews</h5>
         {allReviewsMap}
+        <button>Edit Review</button>
+        <br/>
+        <button>Remove Review</button>
         </>
     )
     
