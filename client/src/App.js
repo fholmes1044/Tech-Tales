@@ -34,17 +34,11 @@ useEffect(() =>{
       console.error('Error making request: ', err);
   });
 }, []);
-    // useEffect(() =>{
-    //     fetch("/events")
-    //     .then((r) => r.json())
-    //     .then((event) =>{
-    //         setAllEvents(event)
-    //     })
-    // }, []
-    // )
+    
 
     const addNewReview = (newReview) => {
-      const updatedReviews = allEvents.map((event) =>{
+      //updatedEvents
+      const updatedEvents = allEvents.map((event) =>{
         if(event.id === newReview.event_id){
             return {...event,reviews:[...event.reviews, newReview]}
         } else {
@@ -52,7 +46,7 @@ useEffect(() =>{
         }
       })
   
-      setAllEvents(updatedReviews)
+      setAllEvents(updatedEvents)
     }
 
     const addNewEvent = (newEvent) => {
@@ -82,7 +76,7 @@ console.log("Events", allEvents)
           <EventsDisplay allEvents={allEvents}/>
         </Route>
         <Route exact path ="/reviews">
-          <ReviewsDisplay/>
+          <ReviewsDisplay allEvents={allEvents}/>
           <NewReviewForm allEvents={allEvents} addNewReview={addNewReview}/>
         </Route>
       </Switch> 

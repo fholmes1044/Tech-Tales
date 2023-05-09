@@ -6,35 +6,7 @@ function NewReviewForm({allEvents, addNewReview}){
     const [eventId, setEventId] = useState("")
     const [errors, setErrors] = useState([])
 console.log("ALL", allEvents)
-    
-    // const handleSubmit = (e) =>{
-    //     e.preventDefault();
-    //     const formData = {
-    //         summary: summary,
-    //         event_id: parseInt(eventId),
-    //         user_id: user.id
-    //     }
-    //     console.log("fd", formData)
-    //     fetch("/reviews", {
-    //         method: "POST",
-    //         headers:{
-    //             "Content-Type": "application/json",
-    //         },
-    //         body: JSON.stringify(formData),
-    //     }).then((r) => {
-    //         if (r.ok) {
-    //             r.json().then((review) => {
-    //                 console.log("r", review)
-    //                     setSummary("");
-    //                     setEventId("");
-    //                     setErrors([]);
-    //                     addNewReview(review)
-    //                 });   
-    //         }else {
-    //             r.json().then((err) => setErrors(err.errors));
-    //         }
-    //     })
-    // }
+
     const handleSubmit = (e) =>{
         e.preventDefault();
         const formData = {
@@ -56,8 +28,6 @@ console.log("ALL", allEvents)
                 throw new Error("Network response was not ok");
             }
         }).then((data) => {
-            console.log("s", data)
-            console.log("Success:", data);
             setSummary("");
             setEventId("");
             setErrors([]);

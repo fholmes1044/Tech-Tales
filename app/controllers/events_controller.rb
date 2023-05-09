@@ -5,8 +5,8 @@ class EventsController < ApplicationController
     def index 
         user = User.find_by(id: session[:user_id])
         if user
-            events = Event.all
-            render json: events, include: :reviews
+            events = Event.all.includes(:reviews)
+            render json: events
         end
         
     end 
