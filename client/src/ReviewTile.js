@@ -9,10 +9,19 @@ function ReviewTile({event}){
 //    console.log("R", review)
 
    const allReviewsMap = event.reviews.map((review) =>{
+    if(review.user_id === user.id)
     return(
         <li key={review.id}>{review.summary}</li>
     )
    })
+
+   const handleEditClick = () => {
+    console.log("edit me")
+   }
+
+   const handleDeleteClick = () => {
+    console.log("delete me")
+   }
     return(
         <>
         <h3>{title}</h3>
@@ -20,9 +29,9 @@ function ReviewTile({event}){
         {/* {user.reviews.length > 0 ? {allReviewsMap} : "No reviews yet" } */}
         <h5>Reviews</h5>
         {allReviewsMap}
-        <button>Edit Review</button>
+        <button onClick = {handleEditClick}>Edit Review</button>
         <br/>
-        <button>Remove Review</button>
+        <button onClick = {handleDeleteClick}>Remove Review</button>
         </>
     )
     
