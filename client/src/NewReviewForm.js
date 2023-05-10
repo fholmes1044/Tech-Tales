@@ -5,7 +5,6 @@ function NewReviewForm({allEvents, addNewReview}){
     const [summary, setSummary] = useState("")
     const [eventId, setEventId] = useState("")
     const [errors, setErrors] = useState([])
-console.log("ALL", allEvents)
 
     const handleSubmit = (e) =>{
         e.preventDefault();

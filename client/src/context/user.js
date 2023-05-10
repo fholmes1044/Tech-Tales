@@ -7,7 +7,7 @@ function UserProvider({ children }) {
     const [user, setUser] = useState({})
     const [loggedIn, setLoggedIn] = useState(false)
     const history = useHistory()
-console.log("user", user)
+// console.log("user", user)
 // console.log("li", loggedIn)
     useEffect(() => {
         fetch("/me")
