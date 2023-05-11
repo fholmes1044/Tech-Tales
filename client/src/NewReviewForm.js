@@ -13,7 +13,7 @@ function NewReviewForm({allEvents, addNewReview}){
             event_id: parseInt(eventId),
             user_id: user.id
         }
-    
+   
         fetch("/reviews", {
             method: "POST",
             headers:{

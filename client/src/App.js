@@ -11,10 +11,12 @@ import NewEventForm from "./NewEventForm";
 import NewReviewForm from "./NewReviewForm";
 import EventsDisplay from "./EventsDisplay";
 import ReviewsDisplay from "./ReviewsDisplay";
+// import UpdateReviewForm from "./UpdateReviewForm";
 
 
 function App() {
   const [allEvents, setAllEvents] = useState([])
+  
   
 useEffect(() =>{
   fetch("/events")
@@ -36,6 +38,7 @@ useEffect(() =>{
     
 
     const addNewReview = (newReview) => {
+      console.log("NR", newReview)
       const updatedEvents = allEvents.map((event) =>{
         if(event.id === newReview.event_id){
             return {...event,reviews:[...event.reviews, newReview]}
@@ -77,13 +80,19 @@ useEffect(() =>{
           }
         })
     }
+
+    const handleEditClick = (id, summary) => {
+      // fetch("/reviews")
+      // setShowEditForm(!showEditForm)
+      console.log("su",summary)
+     }
   return (
     <div className="App">
           
       <UserProvider>
-        Learn React
       <NavBar/>
        <Switch>
+        
         <Route exact path ="/">
           <HomePage />
         </Route>
@@ -98,8 +107,9 @@ useEffect(() =>{
           <EventsDisplay allEvents={allEvents}/>
         </Route>
         <Route exact path ="/reviews">
-          <ReviewsDisplay allEvents={allEvents} handleDeletedReview= {handleDeletedReview}/>
+          <ReviewsDisplay allEvents={allEvents} handleDeletedReview= {handleDeletedReview} handleEditClick={handleEditClick}/>
           <NewReviewForm allEvents={allEvents} addNewReview={addNewReview}/>
+          {/* <UpdateReviewForm/> */}
         </Route>
       </Switch> 
       </UserProvider>

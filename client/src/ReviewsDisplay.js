@@ -2,7 +2,7 @@ import React,{ useContext} from "react";
 import { UserContext } from "./context/user";
 import ReviewTile from "./ReviewTile"
 
-function ReviewsDisplay({allEvents, handleDeletedReview}){
+function ReviewsDisplay({allEvents, handleDeletedReview, handleEditClick}){
     // console.log("RDE", allEvents)
     
     const {user} = useContext(UserContext)
@@ -16,7 +16,7 @@ function ReviewsDisplay({allEvents, handleDeletedReview}){
 
     return(
         allEvents.length > 0 ? filteredEvents.map((event) => (
-       <ReviewTile key={event.id} event={event} handleDeletedReview={handleDeletedReview} />
+       <ReviewTile key={event.id} event={event} handleDeletedReview={handleDeletedReview} handleEditClick={handleEditClick}/>
    )) : <p>There are no events </p> 
    
    )

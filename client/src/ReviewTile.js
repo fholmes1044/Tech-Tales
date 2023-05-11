@@ -1,17 +1,16 @@
-import React, { useContext} from "react";
+import React, { useContext, useState} from "react";
 import { UserContext } from "./context/user";
+import UpdateReviewForm from "./UpdateReviewForm";
 
 
 
-function ReviewTile({event, handleDeletedReview}){
+function ReviewTile({event, handleDeletedReview, handleEditClick}){
 
    const {title, event_description} = event
    const {user} = useContext(UserContext)
+   const [showEditForm, setShowEditForm] = useState(false)
 
- const handleEditClick = (key) => {
-    // fetch("/reviews")
-    console.log("edit me")
-   }
+ 
 
    
    const allReviewsMap = event.reviews.map((review) =>{
@@ -22,7 +21,8 @@ function ReviewTile({event, handleDeletedReview}){
             {review.summary} 
          </li>   
             <br/>
-            <button onClick = {() => handleEditClick(review.id)}> Edit me</button>
+            {showEditForm ? <UpdateReviewForm/> : <button onClick = {() => handleEditClick(review.id, review.summary)}> Edit me</button>} 
+            {/* <button onClick = {() => handleEditClick(review.id, review.summary)}> Edit me</button> */}
             <button onClick= {() => handleDeletedReview(review.id)}>Delete me</button>
         </>
     )
@@ -34,10 +34,10 @@ function ReviewTile({event, handleDeletedReview}){
         <>
         <h3>{title}</h3>
         <p>Description: {event_description}</p>
-        {/* {user.reviews.length > 0 ? {allReviewsMap} : "No reviews yet" } */}
+        
         <h5>Reviews</h5>
         {allReviewsMap}
-        
+        {/* {showEditForm ? <UpdateReviewForm/> : <button onClick = {() => handleEditClick(review.id, review.summary)}> Edit me</button>}  */}
         <hr/>
         </>
     )
