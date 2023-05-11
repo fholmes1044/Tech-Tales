@@ -50,11 +50,36 @@ useEffect(() =>{
     }
 
     const addNewEvent = (newEvent) => {
-      console.log("APPNEWEVENT", newEvent)
+      // console.log("APPNEWEVENT", newEvent)
       setAllEvents([...allEvents, newEvent])
     }
-console.log("Events", allEvents)
 
+
+    const handleDeletedReview = (id) => {
+      fetch(`/reviews/${id}`, {
+          method: "DELETE"
+      }).then((response) => {
+          if (response.ok) {
+            setAllEvents((events) => {
+              const eventToUpdate = events.find((event) => {
+                return event.reviews.some((review) => {
+                  return review.id === id;
+                });
+              });
+             
+              const updatedReviews = eventToUpdate.reviews.filter((review) => {
+                return review.id !== id;
+              });
+              const updatedEvent = { ...eventToUpdate, reviews: updatedReviews };
+        
+             const updatedEvents = events.map((event) => {
+                return event.id === updatedEvent.id ? updatedEvent : event;
+              });
+             return updatedEvents;
+            });
+          }
+        })
+    }
   return (
     <div className="App">
           
@@ -76,7 +101,7 @@ console.log("Events", allEvents)
           <EventsDisplay allEvents={allEvents}/>
         </Route>
         <Route exact path ="/reviews">
-          <ReviewsDisplay allEvents={allEvents}/>
+          <ReviewsDisplay allEvents={allEvents} handleDeletedReview= {handleDeletedReview}/>
           <NewReviewForm allEvents={allEvents} addNewReview={addNewReview}/>
         </Route>
       </Switch> 

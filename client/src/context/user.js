@@ -36,7 +36,7 @@ function UserProvider({ children }) {
         setLoggedIn(true)
     }
     return (
-        <UserContext.Provider value={{user, login, logout, signup, loggedIn}}>
+        <UserContext.Provider value={{user, setUser, login, logout, signup, loggedIn}}>
             {children}
         </UserContext.Provider>
     )

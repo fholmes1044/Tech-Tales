@@ -12,4 +12,19 @@ class ReviewsController < ApplicationController
             render json: { errors: ["Unauthorized access"] }, status: :unauthorized
         end 
     end 
+
+    def destroy
+        user = User.find_by(id: session[:user_id])
+        if user 
+            review = user.reviews.find_by(id: params[:id])
+            if review
+                review.destroy
+                head :no_content
+              else 
+                render json: {error: "Review not found"}, status: :not_found
+              end
+            else
+              render json: {error: "User not authenticated"}, status: :unauthorized
+        end
+    end 
 end
