@@ -1,12 +1,12 @@
-import React,{useState, useContext} from "react";
+import React,{ useContext} from "react";
 import { UserContext } from "./context/user";
 import ReviewTile from "./ReviewTile"
 
 function ReviewsDisplay({allEvents, handleDeletedReview}){
-    console.log("RDE", allEvents)
+    // console.log("RDE", allEvents)
     
     const {user} = useContext(UserContext)
-    console.log("RU", user)
+    // console.log("RU", user)
 
     const filteredEvents = allEvents.filter((event) => {
         return event.users.some((eventuser) => eventuser.id === user.id);

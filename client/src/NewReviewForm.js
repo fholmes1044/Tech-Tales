@@ -1,4 +1,4 @@
-import React,{useEffect, useState, useContext} from "react";
+import React,{useState, useContext} from "react";
 import { UserContext } from "./context/user";
 function NewReviewForm({allEvents, addNewReview}){
     const {user} = useContext(UserContext)
