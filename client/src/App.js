@@ -9,7 +9,6 @@ import { UserProvider } from "./context/user";
 import { Switch, Route } from "react-router-dom";
 import NewEventForm from "./NewEventForm";
 import NewReviewForm from "./NewReviewForm";
-// import { useParams } from "react-router";
 import EventsDisplay from "./EventsDisplay";
 import ReviewsDisplay from "./ReviewsDisplay";
 
@@ -23,7 +22,7 @@ useEffect(() =>{
       try {
           return r.json();
       } catch (e) {
-          console.error('Error parsing response data: ', e);
+          console.error('Error', e);
           return {};
       }
   })
@@ -37,7 +36,6 @@ useEffect(() =>{
     
 
     const addNewReview = (newReview) => {
-      //updatedEvents
       const updatedEvents = allEvents.map((event) =>{
         if(event.id === newReview.event_id){
             return {...event,reviews:[...event.reviews, newReview]}
@@ -50,7 +48,6 @@ useEffect(() =>{
     }
 
     const addNewEvent = (newEvent) => {
-      // console.log("APPNEWEVENT", newEvent)
       setAllEvents([...allEvents, newEvent])
     }
 
@@ -72,7 +69,7 @@ useEffect(() =>{
               });
               const updatedEvent = { ...eventToUpdate, reviews: updatedReviews };
         
-             const updatedEvents = events.map((event) => {
+              const updatedEvents = events.map((event) => {
                 return event.id === updatedEvent.id ? updatedEvent : event;
               });
              return updatedEvents;

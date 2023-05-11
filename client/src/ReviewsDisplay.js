@@ -12,20 +12,7 @@ function ReviewsDisplay({allEvents, handleDeletedReview}){
         return event.users.some((eventuser) => eventuser.id === user.id);
       });
       
-      console.log(filteredEvents);
-
-
-    const findEvents = user.events
-    const findReviews = user.reviews
- 
-
-    //map through all events 
-    // return(
-    //      user.events && user.events.length > 0 ? user.events.map((review) => (
-    //     <ReviewTile key={review.id} review={review} />
-    // )) : <p>There are no events </p> 
-    
-    // )
+      
 
     return(
         allEvents.length > 0 ? filteredEvents.map((event) => (
