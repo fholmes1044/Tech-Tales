@@ -10,11 +10,14 @@ function ReviewTile({event, handleDeletedReview, handleEditClick}){
    const {user} = useContext(UserContext)
    const [showEditForm, setShowEditForm] = useState(false)
 
- 
+  
 
    
    const allReviewsMap = event.reviews.map((review) =>{
+    
     if(review.user_id === user.id)
+    // console.log("er",event.reviews)
+    // console.log("e", event)
     return(
         <>
         <li key={review.id}>

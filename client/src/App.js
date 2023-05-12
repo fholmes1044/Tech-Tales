@@ -14,9 +14,11 @@ import ReviewsDisplay from "./ReviewsDisplay";
 // import UpdateReviewForm from "./UpdateReviewForm";
 
 
+
 function App() {
   const [allEvents, setAllEvents] = useState([])
-  
+  const [userReviewedEvents, setUserReviewedEvents] = useState([]);
+
   
 useEffect(() =>{
   fetch("/events")
@@ -35,19 +37,22 @@ useEffect(() =>{
       console.error('Error making request: ', err);
   });
 }, []);
-    
+
 
     const addNewReview = (newReview) => {
-      console.log("NR", newReview)
+      //  console.log("NR", newReview)
       const updatedEvents = allEvents.map((event) =>{
         if(event.id === newReview.event_id){
-            return {...event,reviews:[...event.reviews, newReview]}
+            return {
+              ...event,
+              reviews:[...event.reviews, newReview],
+            };
         } else {
-          return event
+            return event;
         }
-      })
-  
+      });
       setAllEvents(updatedEvents)
+
     }
 
     const addNewEvent = (newEvent) => {
@@ -66,10 +71,13 @@ useEffect(() =>{
                   return review.id === id;
                 });
               });
+              console.log("Etu",eventToUpdate)
              
               const updatedReviews = eventToUpdate.reviews.filter((review) => {
                 return review.id !== id;
               });
+
+              console.log("ur", updatedReviews)
               const updatedEvent = { ...eventToUpdate, reviews: updatedReviews };
         
               const updatedEvents = events.map((event) => {
@@ -108,6 +116,7 @@ useEffect(() =>{
         </Route>
         <Route exact path ="/reviews">
           <ReviewsDisplay allEvents={allEvents} handleDeletedReview= {handleDeletedReview} handleEditClick={handleEditClick}/>
+          {/* { <ReviewsDisplay userReviewedEvents={userReviewedEvents} handleDeletedReview= {handleDeletedReview} handleEditClick={handleEditClick}/> } */}
           <NewReviewForm allEvents={allEvents} addNewReview={addNewReview}/>
           {/* <UpdateReviewForm/> */}
         </Route>
