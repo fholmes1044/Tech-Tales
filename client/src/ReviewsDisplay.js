@@ -6,10 +6,10 @@ function ReviewsDisplay({allEvents, handleDeletedReview, handleEditClick}){
     // console.log("RDE", allEvents)
     
     const {user} = useContext(UserContext)
-     console.log("RU", user)
+    //  console.log("RU", user)
 
     const filteredEvents = allEvents.filter((event) => {
-        return event.users.some((eventuser) => eventuser.id === user.id);
+        return event.reviews.some((eventreview) => eventreview.user_id === user.id);
       });
       
       

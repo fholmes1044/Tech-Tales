@@ -12,7 +12,9 @@ class EventsController < ApplicationController
     end 
 
     def show
+        event = Event.find(params[:id])
         if event
+            # render json: event, serializer: EventSerializer, current_user: current_user
             render json: event
         else 
             render json: {error: "Event not found"}

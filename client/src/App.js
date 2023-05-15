@@ -40,9 +40,10 @@ useEffect(() =>{
 
 
     const addNewReview = (newReview) => {
-      //  console.log("NR", newReview)
+       console.log("NR", newReview)
       const updatedEvents = allEvents.map((event) =>{
         if(event.id === newReview.event_id){
+          console.log("event", event)
             return {
               ...event,
               reviews:[...event.reviews, newReview],

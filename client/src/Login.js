@@ -24,12 +24,9 @@ function handleSubmit (e){
         .then(res => res.json())
         .then(response => {
             if(!response.errors){
-                // console.log("re", response)
                 login(response)
                 history.push("/")
             }else {
-                // console.log("r",[response][0])
-                
                 const errorList = [response].map(error => <li key={error.errors}>{error.errors}</li> )
                 setErrors(errorList)
             }

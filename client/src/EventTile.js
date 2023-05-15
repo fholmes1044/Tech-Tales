@@ -4,16 +4,12 @@ function EventTile({event}){
    const {title, event_description, price, reviews} = event
    console.log("eventreviews", reviews)
     
-//    const allReviewsMap = reviews.map((review) =>{
-//     return(
-//         <li key={review.id}>{review.summary}</li>
-//     )
-//    })
-const allReviewsMap = reviews && reviews.length > 0 ? reviews.map((review) =>{
-    return(
-        <li key={review.id}>{review.summary}</li>
-    )
-   }) : <li>No reviews yet</li>
+
+    const allReviewsMap = reviews && reviews.length > 0 ? reviews.map((review) =>{
+        return(
+            <li key={review.id}>{review.summary}</li>
+        )
+    }) : <li>No reviews yet</li>
 
 
     return(
