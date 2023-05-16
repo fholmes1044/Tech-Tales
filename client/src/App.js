@@ -17,9 +17,12 @@ import ReviewsDisplay from "./ReviewsDisplay";
 
 function App() {
   const [allEvents, setAllEvents] = useState([])
-  const [userReviewedEvents, setUserReviewedEvents] = useState([]);
-
+  // const [showEditForm, setShowEditForm] = useState(false)
+  // const [updatedSummary, setUpdatedSummary] = useState("")
+  // const [updatedReviewId, setUpdatedReviewId] = useState("")
+  // const [editFormId, setEditFormId] = useState(null);
   
+
 useEffect(() =>{
   fetch("/events")
   .then((r) => {
@@ -60,6 +63,10 @@ useEffect(() =>{
       setAllEvents([...allEvents, newEvent])
     }
 
+    const handleEditClick = (id, summary) => {
+      console.log("i was clicked",id ,"summary", summary )
+      
+    }
 
     const handleDeletedReview = (id) => {
       fetch(`/reviews/${id}`, {
@@ -90,11 +97,20 @@ useEffect(() =>{
         })
     }
 
-    const handleEditClick = (id, summary) => {
-      // fetch("/reviews")
-      // setShowEditForm(!showEditForm)
-      console.log("su",summary)
-     }
+    // const handleEditClick = (id, summary) => {
+    //   // fetch("/reviews")
+    //   // setShowEditForm(!showEditForm)
+    //   // setUpdatedSummary(summary);
+    //   // setUpdatedReviewId(id);
+    //   // setEditFormId(id);
+      
+    //  }
+
+    //  const handleUpdateSubmit = (e) => {
+    //     e.preventDefault()
+    //     // fetch(`/reviews/{id}`)
+        
+    // }
   return (
     <div className="App">
           
@@ -116,10 +132,8 @@ useEffect(() =>{
           <EventsDisplay allEvents={allEvents}/>
         </Route>
         <Route exact path ="/reviews">
-          <ReviewsDisplay allEvents={allEvents} handleDeletedReview= {handleDeletedReview} handleEditClick={handleEditClick}/>
-          {/* { <ReviewsDisplay userReviewedEvents={userReviewedEvents} handleDeletedReview= {handleDeletedReview} handleEditClick={handleEditClick}/> } */}
+          <ReviewsDisplay allEvents={allEvents}  handleDeletedReview= {handleDeletedReview} handleEditClick={handleEditClick} />
           <NewReviewForm allEvents={allEvents} addNewReview={addNewReview}/>
-          {/* <UpdateReviewForm/> */}
         </Route>
       </Switch> 
       </UserProvider>
@@ -128,3 +142,5 @@ useEffect(() =>{
 }
 
 export default App;
+
+{/* <ReviewsDisplay allEvents={allEvents} setUpdatedSummary={setUpdatedSummary} setEditFormId={setEditFormId} editFormId={editFormId} updatedSummary={updatedSummary} handleDeletedReview= {handleDeletedReview} handleEditClick={handleEditClick}  handleUpdateSubmit={handleUpdateSubmit} */}

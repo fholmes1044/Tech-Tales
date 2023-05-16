@@ -2,7 +2,7 @@ import React from "react";
 
 function EventTile({event}){
    const {title, event_description, price, reviews} = event
-   console.log("eventreviews", reviews)
+//    console.log("eventreviews", reviews)
     
 
     const allReviewsMap = reviews && reviews.length > 0 ? reviews.map((review) =>{
