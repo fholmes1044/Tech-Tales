@@ -1,7 +1,7 @@
 
 import React, {useState} from "react";
 
-function UpdateReviewForm({initialSummary, setEditFormId}){
+function UpdateReviewForm({initialSummary, setEditFormId, editedReviewId}){
 
   const [updatedSummary, setUpdatedSummary] = useState(initialSummary)
 
@@ -9,7 +9,21 @@ function UpdateReviewForm({initialSummary, setEditFormId}){
   const handleReviewFormSubmit = (e) =>{
     e.preventDefault()
     console.log(updatedSummary)
-    fetch("/reviews")
+    fetch(`/reviews/${editedReviewId}`, {
+        method: "PATCH",
+        headers: {
+            "Content-Type": "application/json",
+          },
+        body: JSON.stringify({
+            summary: updatedSummary,
+          }),
+    }).then((response) => {
+        if (response.ok) {
+            response.json()
+        }else {
+            console.log("There was an error with the response")
+        }
+    })
     setEditFormId(null)
     
   }

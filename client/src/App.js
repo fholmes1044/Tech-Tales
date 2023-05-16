@@ -11,8 +11,6 @@ import NewEventForm from "./NewEventForm";
 import NewReviewForm from "./NewReviewForm";
 import EventsDisplay from "./EventsDisplay";
 import ReviewsDisplay from "./ReviewsDisplay";
-// import UpdateReviewForm from "./UpdateReviewForm";
-
 
 
 function App() {
@@ -67,6 +65,11 @@ useEffect(() =>{
       console.log("i was clicked",id ,"summary", summary )
     }
 
+    const handleUpdatedReview = (updatedReview) => {
+      console.log("Updated Review", updatedReview)
+     }
+
+    
     const handleDeletedReview = (id) => {
       fetch(`/reviews/${id}`, {
           method: "DELETE"
@@ -96,20 +99,7 @@ useEffect(() =>{
         })
     }
 
-    // const handleEditClick = (id, summary) => {
-    //   // fetch("/reviews")
-    //   // setShowEditForm(!showEditForm)
-    //   // setUpdatedSummary(summary);
-    //   // setUpdatedReviewId(id);
-    //   // setEditFormId(id);
-      
-    //  }
-
-    //  const handleUpdateSubmit = (e) => {
-    //     e.preventDefault()
-    //     // fetch(`/reviews/{id}`)
-        
-    // }
+    
   return (
     <div className="App">
           
@@ -131,7 +121,7 @@ useEffect(() =>{
           <EventsDisplay allEvents={allEvents}/>
         </Route>
         <Route exact path ="/reviews">
-          <ReviewsDisplay allEvents={allEvents}  handleDeletedReview= {handleDeletedReview} handleEditClick={handleEditClick} />
+          <ReviewsDisplay allEvents={allEvents}  handleDeletedReview= {handleDeletedReview} handleEditClick={handleEditClick} handleUpdatedReview={handleUpdatedReview} />
           <NewReviewForm allEvents={allEvents} addNewReview={addNewReview}/>
         </Route>
       </Switch> 
