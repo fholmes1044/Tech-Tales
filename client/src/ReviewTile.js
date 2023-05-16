@@ -16,6 +16,7 @@ function ReviewTile({event, handleDeletedReview, handleEditClick}){
     // Handle the submission of the updated review summary
     // You can perform an API call or update the state accordingly
     // Here, we'll just log the review ID and updated summary
+   
     console.log("Review ID:", reviewId);
     console.log("Updated Summary:", updatedSummary);
 
@@ -33,10 +34,11 @@ function ReviewTile({event, handleDeletedReview, handleEditClick}){
           <br />
           {isEditing ? (
             <UpdateReviewForm
-              onSubmit={(updatedSummary) =>
-                handleEditFormSubmit(review.id, updatedSummary)
-              }
+            //   onSubmit={(updatedSummary) =>
+            //     handleEditFormSubmit(review.id, updatedSummary)
+            //   }
               initialSummary={review.summary}
+              setEditFormId ={setEditFormId}
             />
           ) : (
             <>

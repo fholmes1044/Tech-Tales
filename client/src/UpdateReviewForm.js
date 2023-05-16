@@ -1,15 +1,17 @@
 
 import React, {useState} from "react";
 
-function UpdateReviewForm({initialSummary}){
+function UpdateReviewForm({initialSummary, setEditFormId}){
 
   const [updatedSummary, setUpdatedSummary] = useState(initialSummary)
-//   const [showEditForm, setShowEditForm] = useState(true)
+
    
   const handleReviewFormSubmit = (e) =>{
     e.preventDefault()
     console.log(updatedSummary)
-    // setShowEditForm(false)
+    fetch("/reviews")
+    setEditFormId(null)
+    
   }
  
 
