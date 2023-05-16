@@ -65,7 +65,6 @@ useEffect(() =>{
 
     const handleEditClick = (id, summary) => {
       console.log("i was clicked",id ,"summary", summary )
-      
     }
 
     const handleDeletedReview = (id) => {
