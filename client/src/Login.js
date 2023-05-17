@@ -23,6 +23,7 @@ function handleSubmit (e){
         })
         .then(res => res.json())
         .then(response => {
+            // console.log("login response", response)
             if(!response.errors){
                 login(response)
                 history.push("/")

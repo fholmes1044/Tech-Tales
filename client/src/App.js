@@ -15,10 +15,6 @@ import ReviewsDisplay from "./ReviewsDisplay";
 
 function App() {
   const [allEvents, setAllEvents] = useState([])
-  // const [showEditForm, setShowEditForm] = useState(false)
-  // const [updatedSummary, setUpdatedSummary] = useState("")
-  // const [updatedReviewId, setUpdatedReviewId] = useState("")
-  // const [editFormId, setEditFormId] = useState(null);
   
 
 useEffect(() =>{
@@ -67,6 +63,27 @@ useEffect(() =>{
 
     const handleUpdatedReview = (updatedReview) => {
       console.log("Updated Review", updatedReview)
+      console.log("user id", updatedReview.user)
+      console.log("ALL", allEvents)
+
+      const selectEvent = allEvents.find((event) => event.id === updatedReview.event_id)
+      const updatedEventReviews = selectEvent.reviews.map((review) =>{
+        if(review.id === updatedReview.id){
+          return updatedReview
+        }
+        else{
+          return review
+        }
+      })
+      const updatedEvent = allEvents.map((event) =>{
+        if(selectEvent.id === event.id){
+          return {...event, reviews:[...updatedEventReviews]}
+        }
+        else {
+          return event
+        }
+      })
+      setAllEvents(updatedEvent)
      }
 
     
@@ -132,4 +149,3 @@ useEffect(() =>{
 
 export default App;
 
-{/* <ReviewsDisplay allEvents={allEvents} setUpdatedSummary={setUpdatedSummary} setEditFormId={setEditFormId} editFormId={editFormId} updatedSummary={updatedSummary} handleDeletedReview= {handleDeletedReview} handleEditClick={handleEditClick}  handleUpdateSubmit={handleUpdateSubmit} */}

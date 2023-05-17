@@ -1,14 +1,13 @@
 
 import React, {useState} from "react";
 
-function UpdateReviewForm({initialSummary, setEditFormId, editedReviewId}){
+function UpdateReviewForm({initialSummary, setEditFormId, editedReviewId, handleUpdatedReview}){
 
   const [updatedSummary, setUpdatedSummary] = useState(initialSummary)
 
    
   const handleReviewFormSubmit = (e) =>{
     e.preventDefault()
-    console.log(updatedSummary)
     fetch(`/reviews/${editedReviewId}`, {
         method: "PATCH",
         headers: {
@@ -17,12 +16,10 @@ function UpdateReviewForm({initialSummary, setEditFormId, editedReviewId}){
         body: JSON.stringify({
             summary: updatedSummary,
           }),
-    }).then((response) => {
-        if (response.ok) {
-            response.json()
-        }else {
-            console.log("There was an error with the response")
-        }
+    })
+    .then((response) => response.json())
+    .then((updatedResponse) => {
+        handleUpdatedReview(updatedResponse)
     })
     setEditFormId(null)
     
