@@ -62,10 +62,6 @@ useEffect(() =>{
     }
 
     const handleUpdatedReview = (updatedReview) => {
-      console.log("Updated Review", updatedReview)
-      console.log("user id", updatedReview.user)
-      console.log("ALL", allEvents)
-
       const selectEvent = allEvents.find((event) => event.id === updatedReview.event_id)
       const updatedEventReviews = selectEvent.reviews.map((review) =>{
         if(review.id === updatedReview.id){
@@ -98,15 +94,10 @@ useEffect(() =>{
                   return review.id === id;
                 });
               });
-              console.log("Etu",eventToUpdate)
-             
               const updatedReviews = eventToUpdate.reviews.filter((review) => {
                 return review.id !== id;
               });
-
-              console.log("ur", updatedReviews)
               const updatedEvent = { ...eventToUpdate, reviews: updatedReviews };
-        
               const updatedEvents = events.map((event) => {
                 return event.id === updatedEvent.id ? updatedEvent : event;
               });

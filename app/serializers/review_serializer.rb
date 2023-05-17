@@ -3,4 +3,6 @@ class ReviewSerializer < ActiveModel::Serializer
 
   belongs_to :event
   belongs_to :user
+
+  validates :summary, presence: true
 end
