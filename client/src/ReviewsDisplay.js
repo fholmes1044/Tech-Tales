@@ -3,11 +3,9 @@ import { UserContext } from "./context/user";
 import ReviewTile from "./ReviewTile"
 
 function ReviewsDisplay({allEvents, handleDeletedReview, handleEditClick, handleUpdatedReview }){
-    // console.log("RDE", allEvents)
-    
     const {user} = useContext(UserContext)
-    //  console.log("RU", user)
-
+    
+console.log(user)
     const filteredEvents = allEvents.filter((event) => {
         return event.reviews.some((eventreview) => eventreview.user_id === user.id);
       });
@@ -23,3 +21,7 @@ function ReviewsDisplay({allEvents, handleDeletedReview, handleEditClick, handle
 }
 
 export default ReviewsDisplay;
+
+//take reviews off of the reviewed events so that only events 
+  //mapping user.events
+//iif review is written by user add edit and delete button 

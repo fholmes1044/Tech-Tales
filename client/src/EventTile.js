@@ -1,16 +1,37 @@
-import React from "react";
+import React, {useContext} from "react";
+import { UserContext } from "./context/user";
 
-function EventTile({event}){
-   const {title, event_description, price, reviews} = event
-//    console.log("eventreviews", reviews)
+
+function EventTile({event, allEvents}){
     
+   const {title, event_description, price, reviews} = event
+   const {user} = useContext(UserContext)
+   console.log("e",event)
+//    console.log("eventreviews", reviews)
 
-    const allReviewsMap = reviews && reviews.length > 0 ? reviews.map((review) =>{
-        return(
-            <li key={review.id}>{review.summary}</li>
-        )
-    }) : <li>No reviews yet</li>
-
+const allReviewsMap = () => {
+    if (reviews && reviews.length > 0) {
+      return reviews.map((review) => {
+        const findUserReviews = user.reviews.find(
+          (currentUserReview) => currentUserReview.id === review.id
+        );
+        return (
+          <li key={review.id}>
+            {review.summary}
+            {findUserReviews && (
+              <>
+                <button>Edit</button>
+                <button>Delete</button>
+              </>
+            )}
+          </li>
+        );
+        });
+    } else {
+    return <li>No reviews yet</li>;
+    }
+    };
+  
 
     return(
         <>
@@ -18,7 +39,8 @@ function EventTile({event}){
         <p>Description: {event_description}</p>
         <p> Cost: ${price}</p>
         <h4>Reviews</h4>
-        {allReviewsMap }
+        {/* {allReviewsMap } */}
+        <ul>{allReviewsMap()}</ul>
         <hr/>
        </> 
     )

@@ -6,29 +6,34 @@ const UserContext = React.createContext();
 function UserProvider({ children }) {
     const [user, setUser] = useState({})
     const [loggedIn, setLoggedIn] = useState(false)
-    const history = useHistory()
-// console.log("user", user)
-// console.log("li", loggedIn)
+     console.log(user)
+
     useEffect(() => {
-        fetch("/me")
-        .then(res => res.json())
-        .then((data) =>{
-            setUser(data)
-            data.error ? setLoggedIn(false) : setLoggedIn(true)
-        })
-    }, [])
+            fetch("/me")
+            .then(res => res.json())
+            .then((data) =>{
+                setUser(data)
+                // data.errors ? setLoggedIn(false) : setLoggedIn(true)
+                setLoggedIn(true)
+                // data ? setLoggedIn(true) : setLoggedIn(false)
+            })
+        }, [])
 
     const login = (userobj) => {
+        setLoggedIn(!loggedIn)
         setUser(userobj)
-        setLoggedIn(true)
+        // console.log("login", userobj)
+        
+        // console.log("loggedstatus for login,", loggedIn)
     }
 
+
     const logout = () => {
-        console.log(user, "inside logout function")
-        
         setUser({})
+        // console.log(user, "user inside logout function")
         setLoggedIn(false)
-        history.push("/")  
+        // console.log(loggedIn, "loggedin status inside logoutfunction")
+        // history.push("/")  
     }
 
     const signup = (user) => {
@@ -36,7 +41,7 @@ function UserProvider({ children }) {
         setLoggedIn(true)
     }
     return (
-        <UserContext.Provider value={{user, setUser, login, logout, signup, loggedIn}}>
+        <UserContext.Provider value={{user, setUser, login, logout, signup, loggedIn, setLoggedIn}}>
             {children}
         </UserContext.Provider>
     )

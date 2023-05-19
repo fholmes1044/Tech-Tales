@@ -6,7 +6,7 @@ function EventsDisplay({allEvents}){
     
 
     const allEventsMap = allEvents.map((event) =>(
-        <EventTile key={event.id} event={event} />
+        <EventTile key={event.id} event={event} allEvents={allEvents} />
     ))
 
 return(

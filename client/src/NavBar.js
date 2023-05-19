@@ -27,6 +27,7 @@ const logoutUser = (e) => {
   })
     .then(() =>{
       logout()
+      console.log("loggedin after fetch", loggedIn)
       history.push("/")
     })
 }
@@ -36,7 +37,7 @@ const logoutUser = (e) => {
     <div id="navbar">
 
       <h1> Hello {user.full_name}</h1>
-      {/* <h1>hi</h1> */}
+
       <br/>
       
       <NavLink
