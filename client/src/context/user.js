@@ -6,7 +6,7 @@ const UserContext = React.createContext();
 function UserProvider({ children }) {
     const [user, setUser] = useState({})
     const [loggedIn, setLoggedIn] = useState(false)
-     console.log(user)
+    
 
     useEffect(() => {
             fetch("/me")
@@ -15,10 +15,11 @@ function UserProvider({ children }) {
                 setUser(data)
                 // data.errors ? setLoggedIn(false) : setLoggedIn(true)
                 setLoggedIn(true)
+                // setIsLoading(false);
                 // data ? setLoggedIn(true) : setLoggedIn(false)
             })
         }, [])
-
+ console.log("after use effect",user)
     const login = (userobj) => {
         setLoggedIn(!loggedIn)
         setUser(userobj)

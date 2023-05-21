@@ -1,11 +1,11 @@
 
-import React, {useState, useEffect} from "react";
+import React, {useState, useEffect, useContext} from "react";
 import './App.css';
 import SignUpForm from "./SignUpForm";
 import HomePage from "./HomePage";
 import NavBar from "./NavBar";
 import Login from "./Login";
-import { UserProvider } from "./context/user";
+import { UserContext, UserProvider } from "./context/user";
 import { Switch, Route } from "react-router-dom";
 import NewEventForm from "./NewEventForm";
 import NewReviewForm from "./NewReviewForm";
@@ -15,7 +15,7 @@ import ReviewsDisplay from "./ReviewsDisplay";
 
 function App() {
   const [allEvents, setAllEvents] = useState([])
-  
+  // const { setUser } = useContext(UserContext);
 
 useEffect(() =>{
   fetch("/events")
@@ -37,7 +37,7 @@ useEffect(() =>{
 
 
     const addNewReview = (newReview) => {
-       console.log("NR", newReview)
+      //  console.log("NR", newReview)
       const updatedEvents = allEvents.map((event) =>{
         if(event.id === newReview.event_id){
           console.log("event", event)
@@ -84,27 +84,29 @@ useEffect(() =>{
 
     
     const handleDeletedReview = (id) => {
-      fetch(`/reviews/${id}`, {
-          method: "DELETE"
-      }).then((response) => {
-          if (response.ok) {
-            setAllEvents((events) => {
-              const eventToUpdate = events.find((event) => {
-                return event.reviews.some((review) => {
-                  return review.id === id;
-                });
-              });
-              const updatedReviews = eventToUpdate.reviews.filter((review) => {
-                return review.id !== id;
-              });
-              const updatedEvent = { ...eventToUpdate, reviews: updatedReviews };
-              const updatedEvents = events.map((event) => {
-                return event.id === updatedEvent.id ? updatedEvent : event;
-              });
-             return updatedEvents;
-            });
-          }
-        })
+      // fetch(`/reviews/${id}`, {
+      //     method: "DELETE"
+      // }).then((response) => {
+      //     if (response.ok) {
+      //       setUser((userReview) => {
+      //         const reviewToUpdate = user.reviews.find((event) => {
+      //           return event.reviews.some((review) => {
+      //             return review.id === id;
+      //           });
+      //         });
+      //         const updatedReviews = eventToUpdate.reviews.filter((review) => {
+      //           return review.id !== id;
+      //         });
+      //         const updatedEvent = { ...eventToUpdate, reviews: updatedReviews };
+      //         const updatedEvents = events.map((event) => {
+      //           return event.id === updatedEvent.id ? updatedEvent : event;
+      //         });
+      //        return updatedEvents;
+      //       });
+      //     }
+      //   })
+
+      //move this into the user so it can be used in global state
     }
 
     
@@ -129,6 +131,7 @@ useEffect(() =>{
           <EventsDisplay allEvents={allEvents}/>
         </Route>
         <Route exact path ="/reviews">
+        
           <ReviewsDisplay allEvents={allEvents}  handleDeletedReview= {handleDeletedReview} handleEditClick={handleEditClick} handleUpdatedReview={handleUpdatedReview} />
           <NewReviewForm allEvents={allEvents} addNewReview={addNewReview}/>
         </Route>

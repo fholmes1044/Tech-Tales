@@ -7,6 +7,8 @@ function ReviewTile({ event, handleDeletedReview, handleUpdatedReview}) {
   const { user } = useContext(UserContext);
   const [editFormId, setEditFormId] = useState(null);
 
+  console.log("EVENT TILE",event.reviews)
+
   const allReviewsMap = event.reviews.map((review) => {
     if (review.user_id === user.id) {
       const isEditing = review.id === editFormId;
@@ -36,11 +38,12 @@ function ReviewTile({ event, handleDeletedReview, handleUpdatedReview}) {
     return null;
   });
 
+
   return (
     <>
       <h3>{title}</h3>
       <p>Description: {event_description}</p>
-      <h5>Reviews</h5>
+      <h5>Summary</h5>
       <ul>{allReviewsMap}</ul>
       <hr />
     </>
