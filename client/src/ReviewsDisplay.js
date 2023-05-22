@@ -5,7 +5,7 @@ import ReviewTile from "./ReviewTile"
 function ReviewsDisplay({allEvents, handleDeletedReview, handleEditClick, handleUpdatedReview }){
     const {user} = useContext(UserContext)
     
-console.log("UEU", user.user_events)
+
     // const filteredEvents = allEvents.filter((event) => {
     //     return event.reviews.some((eventreview) => eventreview.user_id === user.id);
     //   });
@@ -20,7 +20,7 @@ console.log("UEU", user.user_events)
   //  )
    
     return(
-        allEvents.length > 0 ? user.user_events.map((event) => (
+        allEvents.length > 0 ? user.events.map((event) => (
        <ReviewTile key={event.id} event={event} handleDeletedReview={handleDeletedReview} handleUpdatedReview={handleUpdatedReview} handleEditClick={handleEditClick} />
    )) : <p>There are no events </p> 
    

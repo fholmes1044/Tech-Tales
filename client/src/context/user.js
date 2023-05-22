@@ -41,6 +41,8 @@ function UserProvider({ children }) {
         setUser(user)
         setLoggedIn(true)
     }
+
+    
     return (
         <UserContext.Provider value={{user, setUser, login, logout, signup, loggedIn, setLoggedIn}}>
             {children}

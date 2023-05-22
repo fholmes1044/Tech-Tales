@@ -2,16 +2,43 @@ import React, { useContext, useState } from "react";
 import { UserContext } from "./context/user";
 import UpdateReviewForm from "./UpdateReviewForm";
 
-function ReviewTile({ event, handleDeletedReview, handleUpdatedReview}) {
+function ReviewTile({ event,  handleUpdatedReview}) {
   const { title, event_description } = event;
-  const { user } = useContext(UserContext);
+  const { user, setUser } = useContext(UserContext);
   const [editFormId, setEditFormId] = useState(null);
 
-  console.log("EVENT TILE",event.reviews)
+  console.log("reviews",user.reviews)
+  console.log("EVe", user.events)
+
+  const handleDeletedReview = (id) => {
+    fetch(`/reviews/${id}`, {
+        method: "DELETE"
+    }).then((response) => {
+        if (response.ok) {
+          setUser(() => {
+            //finds deleted review
+            const deletedReview = user.reviews.find((review) => {
+                return review.id === id;
+            });
+            //filter through events and returns the ones that don't match the deleted review's event id
+            const updatedEvents = user.events.filter((event) => {
+                return event.id !== deletedReview.event_id;
+            });
+
+            // const updatedEvent 
+            const updatedUser = { ...user, events: updatedEvents };
+          
+           return updatedUser;
+          });
+        }
+      })
+
+  }
 
   const allReviewsMap = event.reviews.map((review) => {
+    const isEditing = review.id === editFormId;
     if (review.user_id === user.id) {
-      const isEditing = review.id === editFormId;
+      
 
       return (
         <li key={review.id}>
