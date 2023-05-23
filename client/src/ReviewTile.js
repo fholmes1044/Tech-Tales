@@ -2,13 +2,13 @@ import React, { useContext, useState } from "react";
 import { UserContext } from "./context/user";
 import UpdateReviewForm from "./UpdateReviewForm";
 
-function ReviewTile({ event,  handleUpdatedReview}) {
+function ReviewTile({ event}) {
   const { title, event_description } = event;
   const { user, setUser } = useContext(UserContext);
   const [editFormId, setEditFormId] = useState(null);
 
-  console.log("reviews",user.reviews)
-  console.log("EVe", user.events)
+  // console.log("reviews",user.reviews)
+  // console.log("EVe", user.events)
 
   const handleDeletedReview = (id) => {
     fetch(`/reviews/${id}`, {
@@ -25,7 +25,6 @@ function ReviewTile({ event,  handleUpdatedReview}) {
                 return event.id !== deletedReview.event_id;
             });
 
-            // const updatedEvent 
             const updatedUser = { ...user, events: updatedEvents };
           
            return updatedUser;
@@ -49,7 +48,7 @@ function ReviewTile({ event,  handleUpdatedReview}) {
               initialSummary={review.summary}
               setEditFormId={setEditFormId}
               editedReviewId={review.id}
-              handleUpdatedReview={handleUpdatedReview}
+              // handleUpdatedReview={handleUpdatedReview}
             />
           ) : (
             <>

@@ -1,9 +1,23 @@
 
-import React, {useState} from "react";
+import React, {useState,  useContext} from "react";
+import { UserContext } from "./context/user";
 
-function UpdateReviewForm({initialSummary, setEditFormId, editedReviewId, handleUpdatedReview}){
+function UpdateReviewForm({initialSummary, setEditFormId, editedReviewId}){
 
   const [updatedSummary, setUpdatedSummary] = useState(initialSummary)
+  const {user, setUser} = useContext(UserContext)
+
+  const handleUpdatedReview = (updatedEvent) => {
+    setUser({...user, events: user.events.map((event) => {
+      if(event.id === updatedEvent.id){
+        return updatedEvent
+      }else{
+        return event
+      }
+    })
+
+    })
+   }
 
    
   const handleReviewFormSubmit = (e) =>{
@@ -19,7 +33,8 @@ function UpdateReviewForm({initialSummary, setEditFormId, editedReviewId, handle
     })
     .then((response) => response.json())
     .then((updatedResponse) => {
-        handleUpdatedReview(updatedResponse)
+        console.log("updated fetch", updatedResponse.event)
+        handleUpdatedReview(updatedResponse.event)
     })
     setEditFormId(null)
     

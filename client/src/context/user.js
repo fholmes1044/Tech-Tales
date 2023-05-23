@@ -19,7 +19,7 @@ function UserProvider({ children }) {
                 // data ? setLoggedIn(true) : setLoggedIn(false)
             })
         }, [])
- console.log("after use effect",user)
+//  console.log("after use effect",user)
     const login = (userobj) => {
         setLoggedIn(!loggedIn)
         setUser(userobj)

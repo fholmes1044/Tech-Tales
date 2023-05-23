@@ -1,10 +1,43 @@
 import React,{useState, useContext} from "react";
 import { UserContext } from "./context/user";
-function NewReviewForm({allEvents, addNewReview}){
-    const {user} = useContext(UserContext)
+function NewReviewForm({allEvents}){
+    const {user, setUser} = useContext(UserContext)
     const [summary, setSummary] = useState("")
     const [eventId, setEventId] = useState("")
     const [errors, setErrors] = useState([])
+
+    const addNewReview = (newReview) => {
+         console.log("NR", newReview)
+         console.log("user", user)
+        // const NewlyReviewedEvent = user.reviews.find((review) => {
+        //     return review.id === newReview.event_id
+        // })
+
+        if (!newReview.errors) {
+            setUser({ ...user, reviews: [...user.reviews, newReview]})
+            } else {
+              const errorLi= newReview.errors.map(error => <li key={error}>{error}</li>)
+              setErrors(errorLi)
+    
+            }
+
+        //if nre is undefined user.events add t
+        // console.log("NewEvent", NewlyReviewedEvent)
+        // const findNewReview = user.reviews.find((review) => review.event_id === newReview.event_id)
+        // const updatedEvents = user.events.map((event) =>{
+        //   if(event.id === NewlyReviewedEvent.id){
+        //     // console.log("event", event)
+        //       return {
+        //         ...user,
+        //         events:[...event, NewlyReviewedEvent],
+        //       };
+        //   } else {
+        //       return event;
+        //   }
+        // });
+        // setUser(updatedEvents)
+  
+      }
 
     const handleSubmit = (e) =>{
         e.preventDefault();

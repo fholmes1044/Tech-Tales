@@ -36,22 +36,23 @@ useEffect(() =>{
 }, []);
 
 
-    const addNewReview = (newReview) => {
-      //  console.log("NR", newReview)
-      const updatedEvents = allEvents.map((event) =>{
-        if(event.id === newReview.event_id){
-          console.log("event", event)
-            return {
-              ...event,
-              reviews:[...event.reviews, newReview],
-            };
-        } else {
-            return event;
-        }
-      });
-      setAllEvents(updatedEvents)
+    // const addNewReview = (newReview) => {
+    //   //  console.log("NR", newReview)
+    //   const findNewReview = user
+    //   const updatedEvents = allEvents.map((event) =>{
+    //     if(event.id === newReview.event_id){
+    //       console.log("event", event)
+    //         return {
+    //           ...event,
+    //           reviews:[...event.reviews, newReview],
+    //         };
+    //     } else {
+    //         return event;
+    //     }
+    //   });
+    //   setAllEvents(updatedEvents)
 
-    }
+    // }
 
     const addNewEvent = (newEvent) => {
       setAllEvents([...allEvents, newEvent])
@@ -61,54 +62,29 @@ useEffect(() =>{
       console.log("i was clicked",id ,"summary", summary )
     }
 
-    const handleUpdatedReview = (updatedReview) => {
-      const selectEvent = allEvents.find((event) => event.id === updatedReview.event_id)
-      const updatedEventReviews = selectEvent.reviews.map((review) =>{
-        if(review.id === updatedReview.id){
-          return updatedReview
-        }
-        else{
-          return review
-        }
-      })
-      const updatedEvent = allEvents.map((event) =>{
-        if(selectEvent.id === event.id){
-          return {...event, reviews:[...updatedEventReviews]}
-        }
-        else {
-          return event
-        }
-      })
-      setAllEvents(updatedEvent)
-     }
+    // const handleUpdatedReview = (updatedReview) => {
+    //   const selectEvent = allEvents.find((event) => event.id === updatedReview.event_id)
+    //   const updatedEventReviews = selectEvent.reviews.map((review) =>{
+    //     if(review.id === updatedReview.id){
+    //       return updatedReview
+    //     }
+    //     else{
+    //       return review
+    //     }
+    //   })
+    //   const updatedEvent = allEvents.map((event) =>{
+    //     if(selectEvent.id === event.id){
+    //       return {...event, reviews:[...updatedEventReviews]}
+    //     }
+    //     else {
+    //       return event
+    //     }
+    //   })
+    //   setAllEvents(updatedEvent)
+    //  }
 
     
-    const handleDeletedReview = (id) => {
-      // fetch(`/reviews/${id}`, {
-      //     method: "DELETE"
-      // }).then((response) => {
-      //     if (response.ok) {
-      //       setUser((userReview) => {
-      //         const reviewToUpdate = user.reviews.find((event) => {
-      //           return event.reviews.some((review) => {
-      //             return review.id === id;
-      //           });
-      //         });
-      //         const updatedReviews = eventToUpdate.reviews.filter((review) => {
-      //           return review.id !== id;
-      //         });
-      //         const updatedEvent = { ...eventToUpdate, reviews: updatedReviews };
-      //         const updatedEvents = events.map((event) => {
-      //           return event.id === updatedEvent.id ? updatedEvent : event;
-      //         });
-      //        return updatedEvents;
-      //       });
-      //     }
-      //   })
-
-      //move this into the user so it can be used in global state
-    }
-
+    
     
   return (
     <div className="App">
@@ -132,8 +108,8 @@ useEffect(() =>{
         </Route>
         <Route exact path ="/reviews">
         
-          <ReviewsDisplay allEvents={allEvents}  handleDeletedReview= {handleDeletedReview} handleEditClick={handleEditClick} handleUpdatedReview={handleUpdatedReview} />
-          <NewReviewForm allEvents={allEvents} addNewReview={addNewReview}/>
+          <ReviewsDisplay allEvents={allEvents}  handleEditClick={handleEditClick}  />
+          <NewReviewForm allEvents={allEvents} />
         </Route>
       </Switch> 
       </UserProvider>
