@@ -15,7 +15,6 @@ function UpdateReviewForm({initialSummary, setEditFormId, editedReviewId}){
         return event
       }
     })
-
     })
    }
 
@@ -33,7 +32,6 @@ function UpdateReviewForm({initialSummary, setEditFormId, editedReviewId}){
     })
     .then((response) => response.json())
     .then((updatedResponse) => {
-        console.log("updated fetch", updatedResponse.event)
         handleUpdatedReview(updatedResponse.event)
     })
     setEditFormId(null)

@@ -1,11 +1,11 @@
 
-import React, {useState, useEffect, useContext} from "react";
+import React, {useState, useEffect} from "react";
 import './App.css';
 import SignUpForm from "./SignUpForm";
 import HomePage from "./HomePage";
 import NavBar from "./NavBar";
 import Login from "./Login";
-import { UserContext, UserProvider } from "./context/user";
+import { UserProvider } from "./context/user";
 import { Switch, Route } from "react-router-dom";
 import NewEventForm from "./NewEventForm";
 import NewReviewForm from "./NewReviewForm";
@@ -19,17 +19,8 @@ function App() {
 
 useEffect(() =>{
   fetch("/events")
-  .then((r) => {
-      try {
-          return r.json();
-      } catch (e) {
-          console.error('Error', e);
-          return {};
-      }
-  })
-  .then((event) => {
-      setAllEvents(event);
-  })
+  .then((r) => r.json())
+  .then((event) => setAllEvents(event))
   .catch((err) => {
       console.error('Error making request: ', err);
   });
@@ -60,30 +51,7 @@ useEffect(() =>{
 
     const handleEditClick = (id, summary) => {
       console.log("i was clicked",id ,"summary", summary )
-    }
-
-    // const handleUpdatedReview = (updatedReview) => {
-    //   const selectEvent = allEvents.find((event) => event.id === updatedReview.event_id)
-    //   const updatedEventReviews = selectEvent.reviews.map((review) =>{
-    //     if(review.id === updatedReview.id){
-    //       return updatedReview
-    //     }
-    //     else{
-    //       return review
-    //     }
-    //   })
-    //   const updatedEvent = allEvents.map((event) =>{
-    //     if(selectEvent.id === event.id){
-    //       return {...event, reviews:[...updatedEventReviews]}
-    //     }
-    //     else {
-    //       return event
-    //     }
-    //   })
-    //   setAllEvents(updatedEvent)
-    //  }
-
-    
+    }  
     
     
   return (

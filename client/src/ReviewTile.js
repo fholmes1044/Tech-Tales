@@ -7,9 +7,6 @@ function ReviewTile({ event}) {
   const { user, setUser } = useContext(UserContext);
   const [editFormId, setEditFormId] = useState(null);
 
-  // console.log("reviews",user.reviews)
-  // console.log("EVe", user.events)
-
   const handleDeletedReview = (id) => {
     fetch(`/reviews/${id}`, {
         method: "DELETE"
@@ -48,7 +45,6 @@ function ReviewTile({ event}) {
               initialSummary={review.summary}
               setEditFormId={setEditFormId}
               editedReviewId={review.id}
-              // handleUpdatedReview={handleUpdatedReview}
             />
           ) : (
             <>

@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { useHistory} from "react-router-dom"
+import {useHistory} from "react-router-dom";
 
 const UserContext = React.createContext();
 
 function UserProvider({ children }) {
-    const [user, setUser] = useState({})
+    const [user, setUser] = useState(null)
     const [loggedIn, setLoggedIn] = useState(false)
+    const history = useHistory()
     
 
     useEffect(() => {
@@ -19,27 +20,22 @@ function UserProvider({ children }) {
                 // data ? setLoggedIn(true) : setLoggedIn(false)
             })
         }, [])
-//  console.log("after use effect",user)
+
     const login = (userobj) => {
-        setLoggedIn(!loggedIn)
+        // setLoggedIn(true)
         setUser(userobj)
-        // console.log("login", userobj)
-        
-        // console.log("loggedstatus for login,", loggedIn)
     }
 
 
     const logout = () => {
-        setUser({})
-        // console.log(user, "user inside logout function")
-        setLoggedIn(false)
-        // console.log(loggedIn, "loggedin status inside logoutfunction")
-        // history.push("/")  
+        setUser(null)
+        // setLoggedIn(false)  
+        history.push("/")
     }
 
     const signup = (user) => {
         setUser(user)
-        setLoggedIn(true)
+        // setLoggedIn(true)
     }
 
     

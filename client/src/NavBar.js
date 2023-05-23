@@ -1,7 +1,6 @@
 import React, {useContext} from "react";
 import { UserContext } from "./context/user";
-import { NavLink , useHistory} from "react-router-dom";
-// import { NavLink } from "react-router-dom/cjs/react-router-dom.min";
+import { NavLink} from "react-router-dom";
 
 const linkStyles = {
   display: "inline-block",
@@ -15,7 +14,6 @@ const linkStyles = {
 
 function NavBar() {
 const {user, logout, loggedIn} = useContext(UserContext)
-const history = useHistory()
 
 const logoutUser = (e) => {
   e.preventDefault()
@@ -27,12 +25,12 @@ const logoutUser = (e) => {
   })
     .then(() =>{
       logout()
-      console.log("loggedin after fetch", loggedIn)
-      history.push("/")
+      // console.log("loggedin after fetch", loggedIn)
+      // history.push("/")
     })
 }
 
-  if (loggedIn) {
+  if (user) {
   return (
     <div id="navbar">
 

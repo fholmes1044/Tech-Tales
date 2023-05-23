@@ -7,35 +7,26 @@ function NewReviewForm({allEvents}){
     const [errors, setErrors] = useState([])
 
     const addNewReview = (newReview) => {
-         console.log("NR", newReview)
-         console.log("user", user)
-        // const NewlyReviewedEvent = user.reviews.find((review) => {
-        //     return review.id === newReview.event_id
-        // })
-
-        if (!newReview.errors) {
-            setUser({ ...user, reviews: [...user.reviews, newReview]})
+        // console.log("newevent", newReview.user.events)
+        //  console.log("user", user)
+        console.log("NR", newReview)
+        const updatedEvents = user.events.map((event) =>{
+            if(event.id === newReview.event_id){
+            //   console.log("event", event)
+                return {
+                  ...event,
+                  reviews:[...event.reviews, newReview],
+                };
             } else {
-              const errorLi= newReview.errors.map(error => <li key={error}>{error}</li>)
-              setErrors(errorLi)
-    
+                return event;
             }
+          });
+          setUser(updatedEvents)
+        
 
-        //if nre is undefined user.events add t
-        // console.log("NewEvent", NewlyReviewedEvent)
-        // const findNewReview = user.reviews.find((review) => review.event_id === newReview.event_id)
-        // const updatedEvents = user.events.map((event) =>{
-        //   if(event.id === NewlyReviewedEvent.id){
-        //     // console.log("event", event)
-        //       return {
-        //         ...user,
-        //         events:[...event, NewlyReviewedEvent],
-        //       };
-        //   } else {
-        //       return event;
-        //   }
-        // });
-        // setUser(updatedEvents)
+  //check if the event exists in the user.events 
+  //if yes then map over and replace the event with the updated event 
+  //if not then spread operator add event & update user
   
       }
 
@@ -64,6 +55,7 @@ function NewReviewForm({allEvents}){
             setEventId("");
             setErrors([]);
             addNewReview(data);
+            console.log(data, "FETCHDATA")
         }).catch((error) => {
             console.error("Error:", error);
             setErrors([error.message]);
