@@ -6,13 +6,18 @@ function UpdateReviewForm({initialSummary, setEditFormId, editedReviewId}){
 
   const [updatedSummary, setUpdatedSummary] = useState(initialSummary)
   const {user, setUser} = useContext(UserContext)
+console.log(user, "USER")
+ 
 
   const handleUpdatedReview = (updatedEvent) => {
-    setUser({...user, events: user.events.map((event) => {
-      if(event.id === updatedEvent.id){
-        return updatedEvent
+    setUser({...user, reviews: user.reviews.map((review) => {
+      if(review.id === updatedEvent.id){
+        return {
+          ...review,
+          summary: updatedEvent.summary
+        }
       }else{
-        return event
+        return review
       }
     })
     })
@@ -32,7 +37,8 @@ function UpdateReviewForm({initialSummary, setEditFormId, editedReviewId}){
     })
     .then((response) => response.json())
     .then((updatedResponse) => {
-        handleUpdatedReview(updatedResponse.event)
+      console.log("UR", updatedResponse)
+        handleUpdatedReview(updatedResponse)
     })
     setEditFormId(null)
     

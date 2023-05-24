@@ -6,29 +6,50 @@ function NewReviewForm({allEvents}){
     const [eventId, setEventId] = useState("")
     const [errors, setErrors] = useState([])
 
-    const addNewReview = (newReview) => {
-        // console.log("newevent", newReview.user.events)
-        //  console.log("user", user)
-        console.log("NR", newReview)
-        const updatedEvents = user.events.map((event) =>{
-            if(event.id === newReview.event_id){
-            //   console.log("event", event)
+    const addNewReview = (newReviewedEvent) => {
+        console.log("NEWWWW", newReviewedEvent)
+        const eventExists = user.events.some((event) => event.id === newReviewedEvent.id);
+      console.log("EE",eventExists)
+      
+        if (eventExists) {
+          const updatedEvents = user.events.map((event) => {
+            if (event.id === newReviewedEvent.id) {
+                const userEventReview = user.reviews.filter((review) => {
+                   return review.event_id === event.id
+                })
+                
                 return {
-                  ...event,
-                  reviews:[...event.reviews, newReview],
-                };
-            } else {
-                return event;
+                ...event,
+                reviews: [...userEventReview, newReviewedEvent.reviews],
+              };
             }
+            return event;
           });
-          setUser(updatedEvents)
-        
-
+      
+          setUser({ ...user, events: updatedEvents });
+        } else {
+          const event = {
+            id: newReviewedEvent.id,
+            event: [newReviewedEvent],
+          };
+      
+          setUser({ ...user, events: [...user.events, event] });
+          console.log("USERRRRRRRR", user)
+        }
+       };
+      
+      
+    //instead of mapping over events map over user 
+    //update user     
+//send back review 
+//find the event
   //check if the event exists in the user.events 
   //if yes then map over and replace the event with the updated event 
   //if not then spread operator add event & update user
+  //find out why the new event is only going for the playground
+ 
   
-      }
+      //}
 
     const handleSubmit = (e) =>{
         e.preventDefault();

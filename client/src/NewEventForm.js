@@ -21,7 +21,7 @@ function NewEventForm({addNewEvent}){
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        console.log("NO",newEventData.organizer)
+        // console.log("NO",newEventData.organizer)
         fetch("/events",{
         method:"POST",
         headers:{
@@ -41,7 +41,7 @@ function NewEventForm({addNewEvent}){
             organizer: "",
             date: ""
         })
-        console.log("new event", newEvent)
+        // console.log("new event", newEvent)
         addNewEvent(newEvent)
        
     })

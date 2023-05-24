@@ -4,7 +4,7 @@ import {useHistory} from "react-router-dom";
 const UserContext = React.createContext();
 
 function UserProvider({ children }) {
-    const [user, setUser] = useState(null)
+    const [user, setUser] = useState({events:[]})
     const [loggedIn, setLoggedIn] = useState(false)
     const history = useHistory()
     
@@ -28,9 +28,10 @@ function UserProvider({ children }) {
 
 
     const logout = () => {
+        history.push("/")
         setUser(null)
         // setLoggedIn(false)  
-        history.push("/")
+        
     }
 
     const signup = (user) => {

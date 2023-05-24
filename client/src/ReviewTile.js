@@ -31,9 +31,9 @@ function ReviewTile({ event}) {
 
   }
 
-  const allReviewsMap = event.reviews.map((review) => {
+  const allReviewsMap = user.reviews.map((review) => {
     const isEditing = review.id === editFormId;
-    if (review.user_id === user.id) {
+    if (review.event_id === event.id) {
       
 
       return (

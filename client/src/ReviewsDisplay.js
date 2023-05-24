@@ -5,6 +5,7 @@ import ReviewTile from "./ReviewTile"
 function ReviewsDisplay({ handleDeletedReview, handleEditClick}){
     const {user} = useContext(UserContext)
    
+   
     return(
         user.events?
         user.events.length > 0 ? user.events.map((event) => (

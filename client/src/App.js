@@ -15,8 +15,6 @@ import ReviewsDisplay from "./ReviewsDisplay";
 
 function App() {
   const [allEvents, setAllEvents] = useState([])
-  // const { setUser } = useContext(UserContext);
-
 useEffect(() =>{
   fetch("/events")
   .then((r) => r.json())
@@ -26,24 +24,6 @@ useEffect(() =>{
   });
 }, []);
 
-
-    // const addNewReview = (newReview) => {
-    //   //  console.log("NR", newReview)
-    //   const findNewReview = user
-    //   const updatedEvents = allEvents.map((event) =>{
-    //     if(event.id === newReview.event_id){
-    //       console.log("event", event)
-    //         return {
-    //           ...event,
-    //           reviews:[...event.reviews, newReview],
-    //         };
-    //     } else {
-    //         return event;
-    //     }
-    //   });
-    //   setAllEvents(updatedEvents)
-
-    // }
 
     const addNewEvent = (newEvent) => {
       setAllEvents([...allEvents, newEvent])
