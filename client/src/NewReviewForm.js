@@ -7,34 +7,15 @@ function NewReviewForm({allEvents}){
     const [errors, setErrors] = useState([])
 
     const addNewReview = (newReview) => {
-        console.log("NEWWWW", newReview)
-        const eventExists = user.events.some((event) => event.id === newReview.event_id);
-      console.log("EE",eventExists)
-      console.log("USER", user)
-      
-        if (eventExists) {
-          const updatedEvents = user.events.map((event) => {
-            if (event.id === newReview.event_id) {
-                const myEventReviews = user.reviews.filter((review) => review.event_id === event.id)
-                return {
-                ...event,
-                reviews: [...myEventReviews, newReview],
-              };
-            }
-            return event;
-          });
-      
-          setUser({ ...user, events: updatedEvents, reviews: [...user.reviews, newReview] });
-        } else {
           const event = {
             ...newReview.event, 
             reviews: [newReview]
           };
       
-          setUser({ ...user, events: [...user.events, event],reviews: [...user.reviews, newReview]   });
+          setUser({ ...user, events: [...user.events, event],reviews: [...user.reviews, newReview] });
           console.log("USERRRRRRRR", user)
         }
-       };
+       
       
       
 
