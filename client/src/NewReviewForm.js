@@ -6,50 +6,38 @@ function NewReviewForm({allEvents}){
     const [eventId, setEventId] = useState("")
     const [errors, setErrors] = useState([])
 
-    const addNewReview = (newReviewedEvent) => {
-        console.log("NEWWWW", newReviewedEvent)
-        const eventExists = user.events.some((event) => event.id === newReviewedEvent.id);
+    const addNewReview = (newReview) => {
+        console.log("NEWWWW", newReview)
+        const eventExists = user.events.some((event) => event.id === newReview.event_id);
       console.log("EE",eventExists)
+      console.log("USER", user)
       
         if (eventExists) {
           const updatedEvents = user.events.map((event) => {
-            if (event.id === newReviewedEvent.id) {
-                const userEventReview = user.reviews.filter((review) => {
-                   return review.event_id === event.id
-                })
-                
+            if (event.id === newReview.event_id) {
+                const myEventReviews = user.reviews.filter((review) => review.event_id === event.id)
                 return {
                 ...event,
-                reviews: [...userEventReview, newReviewedEvent.reviews],
+                reviews: [...myEventReviews, newReview],
               };
             }
             return event;
           });
       
-          setUser({ ...user, events: updatedEvents });
+          setUser({ ...user, events: updatedEvents, reviews: [...user.reviews, newReview] });
         } else {
           const event = {
-            id: newReviewedEvent.id,
-            event: [newReviewedEvent],
+            ...newReview.event, 
+            reviews: [newReview]
           };
       
-          setUser({ ...user, events: [...user.events, event] });
+          setUser({ ...user, events: [...user.events, event],reviews: [...user.reviews, newReview]   });
           console.log("USERRRRRRRR", user)
         }
        };
       
       
-    //instead of mapping over events map over user 
-    //update user     
-//send back review 
-//find the event
-  //check if the event exists in the user.events 
-  //if yes then map over and replace the event with the updated event 
-  //if not then spread operator add event & update user
-  //find out why the new event is only going for the playground
- 
-  
-      //}
+
 
     const handleSubmit = (e) =>{
         e.preventDefault();
@@ -76,7 +64,6 @@ function NewReviewForm({allEvents}){
             setEventId("");
             setErrors([]);
             addNewReview(data);
-            console.log(data, "FETCHDATA")
         }).catch((error) => {
             console.error("Error:", error);
             setErrors([error.message]);
