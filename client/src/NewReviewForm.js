@@ -5,6 +5,7 @@ function NewReviewForm({allEvents}){
     const [summary, setSummary] = useState("")
     const [eventId, setEventId] = useState("")
     const [errors, setErrors] = useState([])
+    const [reviewFormErrorsList, setReviewFormErrorsList] = useState([]);
 
     const addNewReview = (newReview) => {
           const event = {
@@ -23,27 +24,27 @@ function NewReviewForm({allEvents}){
             user_id: user.id
         }
    
-        fetch("/reviews", {
+          fetch("/reviews", {
             method: "POST",
             headers:{
                 "Content-Type": "application/json",
             },
             body: JSON.stringify(formData),
-        }).then((response) => {
-            if (response.ok) {
-                return response.json();
-            } else {
-                throw new Error("Network response was not ok");
+        })
+        .then((response) => response.json())
+        .then((data) => {
+            if(!data.errors){
+                setSummary("");
+                setEventId("");
+                setErrors([]);
+                addNewReview(data);
+                setReviewFormErrorsList([])
+            }else{
+                const reviewFormErrorList = data.errors.map(error => <li>{error}</li> )
+                setReviewFormErrorsList(reviewFormErrorList)
             }
-        }).then((data) => {
-            setSummary("");
-            setEventId("");
-            setErrors([]);
-            addNewReview(data);
-        }).catch((error) => {
-            console.error("Error:", error);
-            setErrors([error.message]);
-        });
+        })
+        
     }
     
     return(
@@ -87,6 +88,9 @@ function NewReviewForm({allEvents}){
                 ))}
                 <button type="submit">Submit</button>
             </form>
+            <ul>
+            {reviewFormErrorsList}
+            </ul>
         </div>
     )
 }

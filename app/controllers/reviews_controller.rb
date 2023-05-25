@@ -3,17 +3,12 @@ class ReviewsController < ApplicationController
     def create
         user = User.find_by(id: session[:user_id])
         if user
-          event = Event.find(params[:event_id])
-          if event
-            review = Review.create(summary: params[:summary], event_id: event.id, user_id: user.id)
-            if review.valid?
-              render json: review, status: :created
-            else
-              render json: { errors: review.errors.full_messages }, status: :unprocessable_entity
-            end
-          else
-            render json: { errors: ["Event not found"] }, status: :unprocessable_entity
-          end
+            review = Review.create(summary: params[:summary], event_id: params[:event_id], user_id: params[:user_id])
+              if review.valid?
+                render json: review, status: :created
+              else
+                render json: { errors: review.errors.full_messages }, status: :unprocessable_entity
+              end
         else
           render json: { errors: ["Unauthorized access"] }, status: :unauthorized
         end

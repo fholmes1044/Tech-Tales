@@ -10,18 +10,19 @@ function NewEventForm({addNewEvent}){
         date: ""
 
     })
+    const [eventFormErrorsList, setEventFormErrorsList] = useState([]);
     const handleNewEventInput = (e) => {
         
         setnewEventData({
             ...newEventData,
             [e.target.name]: e.target.value
         })
-        // console.log(e.target.name, e.target.value, "NW" ,newEventData.organizer)
+
     }
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        // console.log("NO",newEventData.organizer)
+
         fetch("/events",{
         method:"POST",
         headers:{
@@ -33,6 +34,7 @@ function NewEventForm({addNewEvent}){
     })
     .then((data) => data.json())
     .then((newEvent) =>{
+        if(!newEvent.errors){
         setnewEventData({
             title: "",
             event_description: "",
@@ -41,9 +43,12 @@ function NewEventForm({addNewEvent}){
             organizer: "",
             date: ""
         })
-        // console.log("new event", newEvent)
         addNewEvent(newEvent)
-       
+        setEventFormErrorsList([])
+        }else {
+            const formErrorList = newEvent.errors.map(error => <li>{error}</li> )
+            setEventFormErrorsList(formErrorList)
+        }
     })
     }
 
@@ -59,7 +64,9 @@ function NewEventForm({addNewEvent}){
                 <input type="text" value={newEventData.date} name="date" placeholder="When did it happen" onChange={handleNewEventInput} />
                 <input type="submit" name="submit"  value="Add New Event"  className="submit" />
             </form>
-
+            <ul>
+                {eventFormErrorsList}
+            </ul>
         </div>
     )
 }
