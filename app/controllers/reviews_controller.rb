@@ -28,6 +28,7 @@ class ReviewsController < ApplicationController
         user = User.find_by(id: session[:user_id])
         if user 
             review = user.reviews.find_by(id: params[:id])
+          
             if review
                 review.destroy
                 head :no_content

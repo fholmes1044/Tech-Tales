@@ -13,7 +13,7 @@ const linkStyles = {
 };
 
 function NavBar() {
-const {user, logout, loggedIn} = useContext(UserContext)
+const {user, logout} = useContext(UserContext)
 
 const logoutUser = (e) => {
   e.preventDefault()
@@ -25,8 +25,6 @@ const logoutUser = (e) => {
   })
     .then(() =>{
       logout()
-      // console.log("loggedin after fetch", loggedIn)
-      // history.push("/")
     })
 }
 

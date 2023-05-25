@@ -13,16 +13,19 @@ function ReviewTile({ event}) {
     }).then((response) => {
         if (response.ok) {
           setUser(() => {
-            //finds deleted review
+            console.log()
             const deletedReview = user.reviews.find((review) => {
                 return review.id === id;
             });
-            //filter through events and returns the ones that don't match the deleted review's event id
+            const updatedReviews = user.reviews.filter((review) => {
+                return review.id !== id;
+            });
+
             const updatedEvents = user.events.filter((event) => {
                 return event.id !== deletedReview.event_id;
             });
 
-            const updatedUser = { ...user, events: updatedEvents };
+            const updatedUser = { ...user, events: updatedEvents, reviews: updatedReviews };
           
            return updatedUser;
           });

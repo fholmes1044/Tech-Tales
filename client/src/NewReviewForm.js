@@ -13,13 +13,8 @@ function NewReviewForm({allEvents}){
           };
       
           setUser({ ...user, events: [...user.events, event],reviews: [...user.reviews, newReview] });
-          console.log("USERRRRRRRR", user)
         }
        
-      
-      
-
-
     const handleSubmit = (e) =>{
         e.preventDefault();
         const formData = {
