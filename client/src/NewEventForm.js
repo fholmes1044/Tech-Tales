@@ -1,4 +1,5 @@
-import React, {useState} from "react";
+import React, {useState, useContext} from "react";
+import { UserContext } from "./context/user";
 
 function NewEventForm({addNewEvent}){
     const [newEventData, setnewEventData] = useState({
@@ -10,7 +11,7 @@ function NewEventForm({addNewEvent}){
         date: ""
 
     })
-    const [eventFormErrorsList, setEventFormErrorsList] = useState([]);
+    const {errors, setErrors} = useContext(UserContext)
     const handleNewEventInput = (e) => {
         
         setnewEventData({
@@ -44,10 +45,10 @@ function NewEventForm({addNewEvent}){
             date: ""
         })
         addNewEvent(newEvent)
-        setEventFormErrorsList([])
+        setErrors([])
         }else {
             const formErrorList = newEvent.errors.map(error => <li>{error}</li> )
-            setEventFormErrorsList(formErrorList)
+            setErrors(formErrorList)
         }
     })
     }
@@ -65,7 +66,7 @@ function NewEventForm({addNewEvent}){
                 <input type="submit" name="submit"  value="Add New Event"  className="submit" />
             </form>
             <ul>
-                {eventFormErrorsList}
+                {errors}
             </ul>
         </div>
     )

@@ -1,12 +1,10 @@
 import React,{useState, useContext} from "react";
 import { UserContext } from "./context/user";
 function NewReviewForm({allEvents}){
-    const {user, setUser} = useContext(UserContext)
+    const {user, setUser, errors, setErrors} = useContext(UserContext)
     const [summary, setSummary] = useState("")
     const [eventId, setEventId] = useState("")
-    const [errors, setErrors] = useState([])
-    const [reviewFormErrorsList, setReviewFormErrorsList] = useState([]);
-
+    
     const addNewReview = (newReview) => {
           const event = {
             ...newReview.event, 
@@ -36,12 +34,11 @@ function NewReviewForm({allEvents}){
             if(!data.errors){
                 setSummary("");
                 setEventId("");
-                setErrors([]);
                 addNewReview(data);
-                setReviewFormErrorsList([])
+                setErrors([]);
             }else{
-                const reviewFormErrorList = data.errors.map(error => <li>{error}</li> )
-                setReviewFormErrorsList(reviewFormErrorList)
+                const reviewFormErrorList = data.errors.map(error => <li key={error}>{error}</li> )
+                setErrors(reviewFormErrorList)
             }
         })
         
@@ -81,18 +78,14 @@ function NewReviewForm({allEvents}){
                     onChange={(e) => setSummary(e.target.value)}
                     />
                 </div>
-                {errors.map((err) => (
-                    <p key={err} style={{ color: "red" }}>
-                    {err}
-                  </p>
-                ))}
                 <button type="submit">Submit</button>
             </form>
             <ul>
-            {reviewFormErrorsList}
+            {errors}
             </ul>
         </div>
     )
 }
 
 export default NewReviewForm;
+
