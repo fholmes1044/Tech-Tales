@@ -10,7 +10,7 @@ function ReviewsDisplay({ handleDeletedReview, handleEditClick}){
         user.events?
         user.events.length > 0 ? user.events.map((event) => (
        <ReviewTile key={event.id} event={event} handleDeletedReview={handleDeletedReview} handleEditClick={handleEditClick} />
-   )) : <p>There are no events </p> 
+   )) : <p>You have not created any event summaries yet. </p> 
    : <h1>loading</h1>
    
   )

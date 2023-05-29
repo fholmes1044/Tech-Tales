@@ -2,18 +2,8 @@ import React, {useContext} from "react";
 import { UserContext } from "./context/user";
 import { NavLink} from "react-router-dom";
 
-const linkStyles = {
-  display: "inline-block",
-  width: "180px",
-  padding: "12px",
-  margin: "0 6px 6px",
-  background: "rgb(59, 148, 172)",
-  textDecoration: "none",
-  color: "white",
-};
-
 function NavBar() {
-const {user, logout} = useContext(UserContext)
+const {user, logout, loggedIn} = useContext(UserContext)
 
 const logoutUser = (e) => {
   e.preventDefault()
@@ -28,21 +18,20 @@ const logoutUser = (e) => {
     })
 }
 
-  if (user) {
+  if (loggedIn && user) {
   return (
     <div id="navbar">
 
-      <h1> Hello {user.full_name}</h1>
+      <h2> {user.full_name}, It is time to reflect</h2>
 
       <br/>
       
       <NavLink
         to="/"
         exact
-        style={linkStyles}
-        activeStyle={{
-          background: "darkblue",
-        }}
+        activeClassName="activeLink"
+        className="navbar-link"
+        
       >
         Home
       </NavLink>
@@ -50,10 +39,9 @@ const logoutUser = (e) => {
       <NavLink
         to="/events"
         exact
-        style={linkStyles}
-        activeStyle={{
-          background: "darkblue",
-        }}
+        activeClassName="activeLink"
+        className="navbar-link"
+      
       >
         All Events
       </NavLink>
@@ -61,10 +49,9 @@ const logoutUser = (e) => {
       <NavLink
         to="/reviews"
         exact
-        style={linkStyles}
-        activeStyle={{
-          background: "darkblue",
-        }}
+        activeClassName="activeLink"
+        className="navbar-link"
+        
       >
         My Reviewed Events
       </NavLink>

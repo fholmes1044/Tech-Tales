@@ -35,7 +35,7 @@ useEffect(() =>{
     
     
   return (
-    <div className="App">
+    <>
           
       <UserProvider>
       <NavBar/>
@@ -55,13 +55,13 @@ useEffect(() =>{
           <EventsDisplay allEvents={allEvents}/>
         </Route>
         <Route exact path ="/reviews">
-        
-          <ReviewsDisplay allEvents={allEvents}  handleEditClick={handleEditClick}  />
           <NewReviewForm allEvents={allEvents} />
+          <ReviewsDisplay allEvents={allEvents}  handleEditClick={handleEditClick}  />
+          
         </Route>
       </Switch> 
       </UserProvider>
-    </div>
+    </>
   );
 }
 

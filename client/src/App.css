@@ -1,38 +1,86 @@
-.App {
+body {
   text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  background-color: #d1dbd8;
 }
 
 .App-link {
   color: #61dafb;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.navbar-link {
+  display: inline-block;
+  width: 180px;
+  padding: 12px;
+  margin: 0 6px 6px;
+  background: rgb(59, 148, 172);
+  text-decoration: none;
+  color: rgb(0, 0, 0);
+  font-size: medium;
+  font-weight:600;
 }
+
+.navbar-link.active,
+.navbar-link.activeLink {
+  background: rgb(105, 105, 140);
+}
+
+form {
+  margin-bottom: 20px; 
+}
+
+input[type="text"] {
+  width: 50%; 
+}
+
+
+  .EventsDisplay {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center; 
+  }
+  
+  .EventTile {
+    width: 350px;
+    padding: 16px;
+    margin: 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+
+  }
+
+
+  input,
+select {
+  width: 10%; 
+  padding: 5px; 
+  margin-left: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.sign-in-form {
+  margin: 20px;
+  padding: 20px;
+  }
+
+  .signup-input {
+    width:50%;
+    padding: 8px;
+    border: 1px solid #000000;
+    border-radius: 100px;
+  }
+
+  
+  .ReviewTile {
+    width: 350px;
+    padding: 16px;
+    margin: 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    display: inline-block;
+   
+  }
+
+  button:hover {
+    cursor: pointer;
+  }

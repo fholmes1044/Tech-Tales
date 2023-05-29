@@ -51,11 +51,12 @@ function handleSubmit (e) {
     return(
       <div>
         <h3>Signup</h3>
-        <form onSubmit={handleSubmit}>
-        <label htmlFor="uname">Username:</label>
+        <form  onSubmit={handleSubmit} className="sign-in-form">
+        <label htmlFor="uname">Username:</label><br/>
         <input
           type="text"
           id="username"
+          className="signup-input"
           autoComplete="off"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
@@ -64,6 +65,7 @@ function handleSubmit (e) {
         <input
           type="password"
           id="password"
+          className="signup-input"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           autoComplete="current-password"
@@ -72,6 +74,7 @@ function handleSubmit (e) {
         <input
           type="password"
           id="password_confirmation"
+          className="signup-input"
           value={passwordConfirmation}
           onChange={(e) => setPasswordConfirmation(e.target.value)}
           autoComplete="current-password"
@@ -80,6 +83,7 @@ function handleSubmit (e) {
         <input
           type="text"
           id="fullname"
+          className="signup-input"
           value={fullName}
           onChange={(e) => setFullName(e.target.value)}
         /><br/>
@@ -87,6 +91,7 @@ function handleSubmit (e) {
         <input
           type="text"
           id="age"
+          className="signup-input"
           value={age}
           onChange={(e) => setAge(e.target.value)}
         /><br/>
@@ -94,6 +99,7 @@ function handleSubmit (e) {
         <input
           type="text"
           id="email"
+          className="signup-input"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         /><br/>

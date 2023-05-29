@@ -46,10 +46,9 @@ function NewReviewForm({allEvents}){
     
     return(
         <div>
-            <h2> Add New Review </h2>
+            <h4> Add a New Reflection for an Event </h4>
             <form onSubmit={handleSubmit}>
-                <div>
-                <label>Event</label>
+                
                 <select
                 id="event"
                 value={eventId}
@@ -57,7 +56,7 @@ function NewReviewForm({allEvents}){
                 >
                     {allEvents.length > 0 ? (
                         <>
-                        <option value="">Select Event</option>
+                        <option value="">Select Your Event</option>
                         {allEvents.map((event) => (
                              <option key={event.id} value={event.id}>
                              {event.title}
@@ -68,16 +67,15 @@ function NewReviewForm({allEvents}){
                         <option value="">No events found</option>
                         )}
                 </select>
-                </div>
-                <div>
-                    <label>Summary</label>
+               
                     <input 
                     type="text"
                     id="summary"
+                    placeholder="What did you learn from the event?"
                     value={summary}
                     onChange={(e) => setSummary(e.target.value)}
                     />
-                </div>
+              
                 <button type="submit">Submit</button>
             </form>
             <ul>

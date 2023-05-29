@@ -3,7 +3,7 @@ import { UserContext } from "./context/user";
 import UpdateReviewForm from "./UpdateReviewForm";
 
 function ReviewTile({ event}) {
-  const { title, event_description } = event;
+  const { title, event_description, date } = event;
   const { user, setUser } = useContext(UserContext);
   const [editFormId, setEditFormId] = useState(null);
 
@@ -13,34 +13,22 @@ function ReviewTile({ event}) {
     }).then((response) => {
         if (response.ok) {
           setUser(() => {
-            console.log()
-            const deletedReview = user.reviews.find((review) => {
-                return review.id === id;
-            });
-            const updatedReviews = user.reviews.filter((review) => {
-                return review.id !== id;
-            });
-
-            const updatedEvents = user.events.filter((event) => {
-                return event.id !== deletedReview.event_id;
-            });
-
+            const deletedReview = user.reviews.find((review) =>  review.id === id);
+            const updatedReviews = user.reviews.filter((review) => review.id !== id);
+            const updatedEvents = user.events.filter((event) => event.id !== deletedReview.event_id);
             const updatedUser = { ...user, events: updatedEvents, reviews: updatedReviews };
-          
            return updatedUser;
           });
         }
       })
-
   }
 
   const allReviewsMap = user.reviews.map((review) => {
     const isEditing = review.id === editFormId;
     if (review.event_id === event.id) {
       
-
       return (
-        <li key={review.id}>
+        <div key={review.id}>
           {review.summary}
           <br />
           {isEditing ? (
@@ -57,7 +45,7 @@ function ReviewTile({ event}) {
               </button>
             </>
           )}
-        </li>
+        </div>
       );
     }
     return null;
@@ -65,13 +53,14 @@ function ReviewTile({ event}) {
 
 
   return (
-    <>
+    <div className="ReviewTile">
       <h3>{title}</h3>
       <p>Description: {event_description}</p>
+      <p>Date: {date}</p>
       <h5>Summary</h5>
       <ul>{allReviewsMap}</ul>
       <hr />
-    </>
+    </div>
   );
 }
 
