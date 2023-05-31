@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import {useHistory} from "react-router-dom";
+import React, { useState, useEffect  } from "react";
+import {useHistory, useLocation} from "react-router-dom";
 
 const UserContext = React.createContext();
 
@@ -9,7 +9,7 @@ function UserProvider({ children }) {
     const [errors, setErrors] = useState([])
     const [loading, setLoading] = useState(false);
     const history = useHistory()
-    
+    const location = useLocation()
 
     useEffect(() => {
         setLoading(true);
@@ -27,6 +27,10 @@ function UserProvider({ children }) {
                 setLoading(false)
             })
         }, [])
+
+    useEffect(() => {
+        setErrors([])
+    }, [location.pathname])
 
     const login = (userobj) => {
         setUser(userobj)
