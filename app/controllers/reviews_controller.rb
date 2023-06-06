@@ -2,7 +2,6 @@ class ReviewsController < ApplicationController
 
   def create
           review = @current_user.reviews.create(review_params)
-        
             if review.valid?
               render json: review, status: :created
             else
@@ -25,11 +24,16 @@ class ReviewsController < ApplicationController
       end
   end 
 
+
   def update
     review = @current_user.reviews.find_by(id: params[:id])
       if review 
-        review.update!(review_params)
-        render json: review
+        updated_review = review.update(review_params)
+          if updated_review
+            render json: review
+          else 
+            render json: {errors: review.errors.full_messages}, status: :unprocessable_entity
+          end
       else 
         render json: {error: "Review not found"}, status: :unprocessable_entity
       end   
@@ -37,9 +41,6 @@ class ReviewsController < ApplicationController
 
   private 
   def review_params 
-    params.permit(:summary, :event_id, :user_id)
+    params.permit(:summary, :event_id)
   end 
 end
-
-
-

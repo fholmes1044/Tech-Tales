@@ -6,14 +6,16 @@ function UpdateReviewForm({initialSummary, setEditFormId, editedReviewId}){
 
   const [updatedSummary, setUpdatedSummary] = useState(initialSummary)
   const {user, setUser} = useContext(UserContext)
+  const {errors, setErrors} = useContext(UserContext)
 
  
-  const handleUpdatedReview = (updatedEvent) => {
+  const handleUpdatedReview = (updatedResponse) => {
+    console.log(updatedResponse)
     setUser({...user, reviews: user.reviews.map((review) => {
-      if(review.id === updatedEvent.id){
+      if(review.id === updatedResponse.id){
         return {
           ...review,
-          summary: updatedEvent.summary
+          summary: updatedResponse.summary
         }
       }else{
         return review
@@ -36,7 +38,12 @@ function UpdateReviewForm({initialSummary, setEditFormId, editedReviewId}){
     })
     .then((response) => response.json())
     .then((updatedResponse) => {
-        handleUpdatedReview(updatedResponse)
+      if(!updatedResponse.errors){
+      handleUpdatedReview(updatedResponse)
+      }else{
+        const updateFormErrorList = updatedResponse.errors.map(error => <li>{error}</li> )
+        setErrors(updateFormErrorList)
+      }
     })
     setEditFormId(null)
     
@@ -45,6 +52,7 @@ function UpdateReviewForm({initialSummary, setEditFormId, editedReviewId}){
 
 
     return(
+      <>
         <form onSubmit={handleReviewFormSubmit}>
             <label>Update your summary</label>
             <input 
@@ -55,6 +63,10 @@ function UpdateReviewForm({initialSummary, setEditFormId, editedReviewId}){
             />
             <button type="submit">Submit</button>
         </form>
+        <ul>
+        {errors}
+        </ul>
+     </>   
     )
 }
 
