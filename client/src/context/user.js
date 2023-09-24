@@ -7,12 +7,10 @@ function UserProvider({ children }) {
     const [user, setUser] = useState({events:[]})
     const [loggedIn, setLoggedIn] = useState(null)
     const [errors, setErrors] = useState([])
-    const [loading, setLoading] = useState(false);
     const history = useHistory()
     const location = useLocation()
 
     useEffect(() => {
-        setLoading(true);
         fetch("/me")
             .then(res => res.json())
             .then((data) =>{
@@ -24,7 +22,6 @@ function UserProvider({ children }) {
                 }else{
                     setLoggedIn(true)
                 }
-                setLoading(false)
             })
         }, [])
 

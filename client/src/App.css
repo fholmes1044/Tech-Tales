@@ -33,7 +33,7 @@ input[type="text"] {
 }
 
 
-  .EventsDisplay {
+  /* .EventsDisplay {
     display: flex;
     flex-wrap: wrap;
     justify-content: center; 
@@ -46,7 +46,7 @@ input[type="text"] {
     border: 1px solid #ccc;
     border-radius: 4px;
 
-  }
+  } */
 
 
   input,

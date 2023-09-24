@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   post "/signup", to: "users#create"
   get "/me", to: "users#show"
   get "/users", to: "users#index"
+  get "/events_reviews/:n", to: "events#event_reviews"
   
   resources :events, only:[:index, :show, :create]
   resources :reviews

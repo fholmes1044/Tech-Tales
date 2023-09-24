@@ -23,6 +23,11 @@ class EventsController < ApplicationController
             end
     end 
 
+    def event_reviews
+        e = Event.all.select{|event| event.reviews.length >= params[:n].to_i}
+        render json:e
+    end
+
     private 
     def event_params 
         params.permit(:title, :event_description, :price, :location, :organizer, :date)

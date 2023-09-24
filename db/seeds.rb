@@ -1,10 +1,3 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
 
 Event.create(title: "Google Sandbox", event_description:"Google Sandbox is a program series designed for industry professionals to explore career opportunities while gaining deeper insight into Google's technology, business, and culture", price:0, location:"25 Massachusetts Ave NW Washington DC 20001", organizer:"Google", date:"June 16, 2022")
 Event.create(title: "Microsoft Build", event_description:"Microsoft Build is an annual conference hosted by Microsoft that brings together developers, engineers, and tech enthusiasts from around the world. The event showcases the latest advancements and updates in Microsoft technologies, platforms, and tools.", price:15, location:"Online", organizer:"Microsoft", date:"May 23, 2023")

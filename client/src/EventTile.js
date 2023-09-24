@@ -1,20 +1,40 @@
 import React from "react";
-
-
+import { Stack, Text,} from "@fluentui/react";
 
 function EventTile({event}){
    const {title, event_description, price, organizer, date, location} = event
  
     return(
-        <div className="EventTile">
-        <h3>{title}</h3>
-        <p><strong>Description:</strong> {event_description}</p>
-        <p><strong>Cost:</strong> ${price}</p>
-        <p><strong>Organizer:</strong> {organizer}</p>
-        <p><strong>Date:</strong> {date}</p>
-        <p><strong>Location:</strong> {location}</p>
-        <hr/>
-       </div> 
+        <Stack
+        className="EventTile"
+        tokens={{ childrenGap: 8 }}
+        styles={{
+          root: {
+            width: 350,
+            padding: 16,
+            border: "1px solid #ccc",
+            borderRadius: 4,
+            margin: 20,
+          },
+        }}
+      >
+        <Text variant="xLarge">{title}</Text>
+        <Text>
+        <strong>Description:</strong> {event_description}
+      </Text>
+      <Text>
+        <strong>Cost:</strong> ${price}
+      </Text>
+      <Text>
+        <strong>Organizer:</strong> {organizer}
+      </Text>
+      <Text>
+        <strong>Date:</strong> {date}
+      </Text>
+      <Text>
+        <strong>Location:</strong> {location}
+      </Text>
+    </Stack> 
     )
     
 }
