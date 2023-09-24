@@ -12,10 +12,10 @@ import NewReviewForm from "./reviews/NewReviewForm";
 import EventsDisplay from "./events/EventsDisplay";
 import ReviewsDisplay from "./reviews/ReviewsDisplay";
 
-
-
 function App() {
   const [allEvents, setAllEvents] = useState([])
+  const[showForm, setShowForm] = useState(false)
+
 useEffect(() =>{
   fetch("/events")
   .then((r) => r.json())
@@ -36,8 +36,7 @@ useEffect(() =>{
     
     
   return (
-    <>
-          
+    <>  
       <UserProvider>
       <NavBar/>
        <Switch>
@@ -51,8 +50,20 @@ useEffect(() =>{
           <Login/>
         </Route>
         <Route exact path ="/events">
-          <NewEventForm addNewEvent={addNewEvent} />
-          <EventsDisplay allEvents={allEvents}/>
+        {showForm && <NewEventForm addNewEvent={addNewEvent} />}
+          
+          <button 
+          onClick={() => setShowForm(!showForm)}
+          style={{ 
+            marginRight: "50px",
+            borderRadius: "8px",
+            fontSize: "14px",
+            padding: "10px 20px"
+        }} 
+          >
+              {showForm ? "Hide Form" : "Add a new event!"}
+            </button>
+            <EventsDisplay allEvents={allEvents}/>
         </Route>
         <Route exact path ="/reviews">
           <NewReviewForm allEvents={allEvents} />

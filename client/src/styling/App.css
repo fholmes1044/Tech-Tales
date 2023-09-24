@@ -7,23 +7,6 @@ body {
   color: #61dafb;
 }
 
-.navbar-link {
-  display: inline-block;
-  width: 180px;
-  padding: 12px;
-  margin: 0 6px 6px;
-  background: rgb(59, 148, 172);
-  text-decoration: none;
-  color: rgb(0, 0, 0);
-  font-size: medium;
-  font-weight:600;
-}
-
-.navbar-link.active,
-.navbar-link.activeLink {
-  background: rgb(105, 105, 140);
-}
-
 form {
   margin-bottom: 20px; 
 }
@@ -33,7 +16,7 @@ input[type="text"] {
 }
 
 
-  input,
+input,
 select {
   width: 10%; 
   padding: 5px; 

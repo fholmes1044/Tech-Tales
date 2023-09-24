@@ -1,5 +1,6 @@
 import React,{useState, useContext} from "react";
 import { UserContext } from "../context/user";
+
 function NewReviewForm({allEvents}){
     const {user, setUser, errors, setErrors} = useContext(UserContext)
     const [summary, setSummary] = useState("")

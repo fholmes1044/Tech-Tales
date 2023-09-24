@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import { Stack } from "@fluentui/react";
 import EventTile from "./EventTile";
 import EventsSearch from "./EventsSearch";
@@ -22,6 +22,10 @@ function EventsDisplay({allEvents}){
         <EventTile key={event.id} event={event} allEvents={allEvents} />
     ))
 
+    useEffect(() => {
+      setFilteredEvents(allEvents);
+    }, [allEvents]);
+    
 return(  
     <>
     <EventsSearch allEvents={allEvents} onSearch={handleSearch}/>

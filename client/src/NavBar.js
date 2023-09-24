@@ -1,6 +1,7 @@
 import React, {useContext} from "react";
 import { UserContext } from "./context/user";
 import { NavLink} from "react-router-dom";
+import './styling/NavBar.css'
 
 function NavBar() {
 const {user, logout, loggedIn} = useContext(UserContext)
@@ -22,7 +23,7 @@ const logoutUser = (e) => {
   return (
     <div id="navbar">
 
-      <h2> {user.full_name}, It is time to reflect</h2>
+      <h2 id="navbarh2"> {user.full_name}, It is time to reflect</h2>
 
       <br/>
       

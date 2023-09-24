@@ -11,14 +11,14 @@ function NewEventForm({addNewEvent}){
         date: ""
 
     })
+
     const {errors, setErrors} = useContext(UserContext)
+
     const handleNewEventInput = (e) => {
-        
         setnewEventData({
             ...newEventData,
             [e.target.name]: e.target.value
         })
-
     }
 
     const handleSubmit = (e) => {
