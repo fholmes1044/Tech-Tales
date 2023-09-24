@@ -1,6 +1,8 @@
 import React, { useContext, useState } from "react";
 import { UserContext } from "./context/user";
 import UpdateReviewForm from "./UpdateReviewForm";
+import { Stack, Text} from "@fluentui/react";
+
 
 function ReviewTile({ event}) {
   const { title, event_description, date } = event;
@@ -53,14 +55,35 @@ function ReviewTile({ event}) {
 
 
   return (
-    <div className="ReviewTile">
-      <h3>{title}</h3>
-      <p>Description: {event_description}</p>
-      <p>Date: {date}</p>
-      <h5>Summary</h5>
-      <ul>{allReviewsMap}</ul>
+    <Stack
+      className="ReviewTile"
+      tokens={{ childrenGap: 8 }}
+      styles={{
+        root: {
+          width: 350,
+          padding: 16,
+          border: "1px solid #ccc",
+          borderRadius: 4,
+          margin: 20,
+        },
+      }}
+    >
+      <Text variant="xxLarge">{title}</Text>
+      <Text variant="mediumPlus">
+        <strong>Description:</strong> 
+        {event_description}
+      </Text>
+      <Text variant="medium">
+        <strong>Date:</strong> 
+        {date}
+      </Text>
+      <Text variant="medium">
+        <h5>Summary</h5>
+        <ul>{allReviewsMap}</ul>
+      </Text>
       <hr />
-    </div>
+    </Stack>
+    
   );
 }
 

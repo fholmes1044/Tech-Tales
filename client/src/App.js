@@ -1,6 +1,6 @@
 
 import React, {useState, useEffect} from "react";
-import './App.css';
+import './styling/App.css';
 import SignUpForm from "./SignUpForm";
 import HomePage from "./HomePage";
 import NavBar from "./NavBar";
@@ -40,7 +40,6 @@ useEffect(() =>{
       <UserProvider>
       <NavBar/>
        <Switch>
-        
         <Route exact path ="/">
           <HomePage />
         </Route>
@@ -57,7 +56,6 @@ useEffect(() =>{
         <Route exact path ="/reviews">
           <NewReviewForm allEvents={allEvents} />
           <ReviewsDisplay allEvents={allEvents}  handleEditClick={handleEditClick}  />
-          
         </Route>
       </Switch> 
       </UserProvider>

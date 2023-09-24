@@ -1,6 +1,6 @@
 body {
   text-align: center;
-  background-color: #d1dbd8;
+  /* background-color: #d1dbd8; */
 }
 
 .App-link {
@@ -33,22 +33,6 @@ input[type="text"] {
 }
 
 
-  /* .EventsDisplay {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center; 
-  }
-  
-  .EventTile {
-    width: 350px;
-    padding: 16px;
-    margin: 20px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-
-  } */
-
-
   input,
 select {
   width: 10%; 
@@ -70,16 +54,6 @@ select {
     border-radius: 100px;
   }
 
-  
-  .ReviewTile {
-    width: 350px;
-    padding: 16px;
-    margin: 20px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    display: inline-block;
-   
-  }
 
   button:hover {
     cursor: pointer;

@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import { UserContext} from "./context/user";
+import "./styling/Home.css"
 
 function HomePage(){
     const { user, loggedIn } = useContext(UserContext)
@@ -11,9 +12,13 @@ function HomePage(){
     }
     else {
        return(
-        <div>
+        <div id="home-div">
             <h3>{user.username} Welcome Home</h3>
-            <h5>Review and Reflect on what you learned from your last attended event! </h5>
+            <img 
+            src="https://i.imgur.com/aznHln4.png"
+            alt="image of a computer with a motivational quote"
+            id="home-image"
+            ></img> 
         </div>
     )  
     }

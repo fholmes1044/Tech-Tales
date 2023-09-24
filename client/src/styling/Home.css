@@ -1,0 +1,13 @@
+#home-image {
+    width: 90%;
+    height: 50%;
+    max-width: 100%;
+  }
+
+#home-div {
+  width: 100vw; 
+  height: 90vw;
+  padding: 20px; 
+  box-sizing: border-box;
+  text-align: center
+}

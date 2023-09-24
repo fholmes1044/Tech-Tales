@@ -18,20 +18,20 @@ function EventTile({event}){
           },
         }}
       >
-        <Text variant="xLarge">{title}</Text>
-        <Text>
+        <Text variant="xxLarge">{title}</Text>
+        <Text variant="mediumPlus">
         <strong>Description:</strong> {event_description}
       </Text>
-      <Text>
+      <Text variant="mediumPlus">
         <strong>Cost:</strong> ${price}
       </Text>
-      <Text>
+      <Text variant="mediumPlus">
         <strong>Organizer:</strong> {organizer}
       </Text>
-      <Text>
+      <Text variant="mediumPlus">
         <strong>Date:</strong> {date}
       </Text>
-      <Text>
+      <Text variant="mediumPlus">
         <strong>Location:</strong> {location}
       </Text>
     </Stack> 
