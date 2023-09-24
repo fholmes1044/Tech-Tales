@@ -1,5 +1,5 @@
 import React,{ useContext} from "react";
-import { UserContext } from "./context/user";
+import { UserContext } from "../context/user";
 import ReviewTile from "./ReviewTile";
 import { Stack } from "@fluentui/react";
 

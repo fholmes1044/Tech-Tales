@@ -7,10 +7,11 @@ import NavBar from "./NavBar";
 import Login from "./Login";
 import { UserProvider } from "./context/user";
 import { Switch, Route } from "react-router-dom";
-import NewEventForm from "./NewEventForm";
-import NewReviewForm from "./NewReviewForm";
-import EventsDisplay from "./EventsDisplay";
-import ReviewsDisplay from "./ReviewsDisplay";
+import NewEventForm from "./events/NewEventForm";
+import NewReviewForm from "./reviews/NewReviewForm";
+import EventsDisplay from "./events/EventsDisplay";
+import ReviewsDisplay from "./reviews/ReviewsDisplay";
+
 
 
 function App() {

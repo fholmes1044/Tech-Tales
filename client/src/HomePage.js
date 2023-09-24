@@ -16,7 +16,7 @@ function HomePage(){
             <h3>{user.username} Welcome Home</h3>
             <img 
             src="https://i.imgur.com/aznHln4.png"
-            alt="image of a computer with a motivational quote"
+            alt=" a computer with a motivational quote"
             id="home-image"
             ></img> 
         </div>
