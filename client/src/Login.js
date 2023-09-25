@@ -1,6 +1,8 @@
 import React, { useState, useContext } from "react";
 import { UserContext } from "./context/user";
 import { useHistory} from "react-router-dom";
+import {Stack, Text, TextField, PrimaryButton } from "@fluentui/react";
+import "./styling/Login.css"
 
 function Login(){
     const [userName, setUsername] = useState("")
@@ -8,6 +10,19 @@ function Login(){
     const {errors, setErrors} = useContext(UserContext)
     const {login} = useContext(UserContext)
     const history = useHistory()
+
+    const textStyles = {
+        root: {
+          marginBottom: 20,
+        },
+      };
+    
+      const buttonStyles = {
+        root: {
+          backgroundColor: "#0078D4",
+          color: "white",
+        },
+      };
 
 function handleSubmit (e){
         e.preventDefault()
@@ -34,30 +49,43 @@ function handleSubmit (e){
             }
             
     return(
-        <div>
-            <h2>Hey login</h2>
-            <form onSubmit={handleSubmit}>
-                <label>Username: </label>
-                <input
-                    type="text"
-                    id="name"
-                    value={userName}
-                    onChange= {(e) => setUsername(e.target.value)}
-                    /><br/>
-                <label>Password: </label>
-                <input
-                    type="password"
-                    id="password"
-                    value={password}
-                    onChange = {(e) => setPassword(e.target.value)}
-                /><br/>
-                <input type="submit"/>
-            </form>
-            <ul>
-                {errors}
-            </ul>
-        </div> 
-    )
+        <div id="login-form">
+        <Stack
+            verticalAlign="center"
+            horizontalAlign="center"
+      styles={{
+        root: {
+          height: "100vh",
+          justifyContent: "center",
+        },
+      }}
+    >
+      <Text variant="xxLarge" styles={textStyles}>
+        Time to Sign In,
+        <br/>
+         Glad You are Here!
+      </Text>
+      <form onSubmit={handleSubmit}>
+        <TextField
+          label="Username"
+          styles={textStyles}
+          value={userName}
+          onChange={(e, newValue) => setUsername(newValue)}
+        />
+        <TextField
+          label="Password"
+          type="password"
+          styles={textStyles}
+          value={password}
+          onChange={(e, newValue) => setPassword(newValue)}
+        />
+        <PrimaryButton text="Login" styles={buttonStyles} type="submit" />
+      </form>
+      <ul>{errors}</ul>
+    </Stack>
+    </div>
+  );
+        
 }
 
 export default Login;
