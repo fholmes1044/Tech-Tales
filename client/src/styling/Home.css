@@ -2,7 +2,12 @@
     width: 100%;
     height: 50%;
     max-width: 100%;
+   
   }
+
+#homepage-image{
+  padding-top: 30px;
+}
 
 #home-div {
   width: 100vw; 
@@ -11,3 +16,4 @@
   box-sizing: border-box;
   text-align: center
 }
+

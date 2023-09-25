@@ -6,22 +6,26 @@ import "./styling/Home.css"
 function HomePage(){
     const { user, loggedIn } = useContext(UserContext)
     const columnStyle = {
-        flex: '1', 
-        minWidth: '300px', 
+        width: '300px', 
         padding: '16px',
-      };
+        backgroundColor: '#37bdbf'
+      }
 
     if (loggedIn === false){
         return (
             <>
-            <h3>Tech Tales: Where Every Event Tells a Story.</h3>
+            
             <div>
                 <img
                 src="https://i.imgur.com/NvMO05y.png"
+                id="homepage-image"
                 />
             </div>
+            <h2>  Every Event Tells Your Story </h2>
+
             <Stack
                 horizontal
+                horizontalAlign="space-evenly"
                 className="homepagetile"
                 tokens={{ childrenGap: 20}}
                 styles={{ 
@@ -29,26 +33,31 @@ function HomePage(){
                         padding: 16,
                         border: "1px solid #ccc",
                         borderRadius: 4,
-                        margin: 20,
+                        margin: '20px auto',
+                        width: '100%',
+                        backgroundColor: "#27303b"
                     } 
                 }} 
             >
             <Stack.Item>
-            <div style={{ padding: '16px' }}>
+            <div style={columnStyle}>
             <Text variant="xxLarge"> Discover </Text>
-            <Text variant="medium">Search Through an Impactful Array of Technology-Centered Events! </Text>
+            <br/>
+            <Text variant="medium">Search Through An Impactful Array Of Technology-Centered Events! </Text>
             </div>
             </Stack.Item>
             <Stack.Item>
-            <div style={{ padding: '16px' }}>
+            <div style={columnStyle}>
             <Text variant="xxLarge"> Attend</Text>
-            <Text variant="medium">Show Up to Tech Events and Supercharge Your Knowledge to Grow by Leaps and Bounds! </Text>
+            <br/>
+            <Text variant="medium">Show Up To Tech Events and Supercharge Your Knowledge To Grow By Leaps And Bounds! </Text>
             </div>
             </Stack.Item>
             <Stack.Item>
-            <div style={{ padding: '16px' }}>
+            <div style={columnStyle}>
             <Text variant="xxLarge">Reflect</Text>
-            <Text variat="medium">Reminisce and Preserve through Intentional Reflections to Eternalize Your Tech Event Learning Gems!</Text>
+            <br/>
+            <Text variat="medium">Reminisce and Preserve Your Tech Event Learning Gems Through Intentional Reflections!</Text>
             </div>
             </Stack.Item>
             </Stack>
