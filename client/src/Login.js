@@ -19,7 +19,7 @@ function Login(){
     
       const buttonStyles = {
         root: {
-          backgroundColor: "#0078D4",
+          backgroundColor: "#419a9c",
           color: "white",
         },
       };

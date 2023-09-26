@@ -1,0 +1,17 @@
+#slideshow {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #27303b;
+  }
+  
+  .slide {
+    width: 400px;
+    height: 350px;
+  }
+
+  .slideshowbutton {
+    margin: 0 200px; 
+    font-size: 18px; 
+  }
+  

@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { UserContext} from "./context/user";
 import { Stack, Text,} from "@fluentui/react";
+import Slideshow from "./SlideShow";
 import "./styling/Home.css"
 
 function HomePage(){
@@ -66,6 +67,7 @@ function HomePage(){
     }
     else {
        return(
+        <>
         <div id="home-div">
             <h3>{user.username} Welcome Home</h3>
             <img 
@@ -73,7 +75,11 @@ function HomePage(){
             alt=" a computer with a motivational quote"
             id="home-image"
             ></img> 
+            
         </div>
+        <h2>Checkout These Upcoming Tech Events!</h2>
+        <Slideshow/>
+        </>
     )  
     }
    

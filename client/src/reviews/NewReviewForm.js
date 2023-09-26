@@ -72,7 +72,7 @@ function NewReviewForm({allEvents}){
                     <input 
                     type="text"
                     id="summary"
-                    placeholder="What did you learn from the event?"
+                    placeholder="What did you learn?"
                     value={summary}
                     onChange={(e) => setSummary(e.target.value)}
                     />
