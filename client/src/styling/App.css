@@ -6,6 +6,6 @@ body {
   color: #61dafb;
 }
 
-  button:hover {
-    cursor: pointer;
-  }
+button:hover {
+  cursor: pointer;
+}
