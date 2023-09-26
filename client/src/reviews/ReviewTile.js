@@ -62,9 +62,10 @@ function ReviewTile({ event}) {
         root: {
           width: 350,
           padding: 16,
-          border: "1px solid #ccc",
+          border: "2px solid #de8143",
           borderRadius: 4,
           margin: 20,
+          boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.2)"
         },
       }}
     >
