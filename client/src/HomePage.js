@@ -16,7 +16,7 @@ function HomePage() {
     return (
       <>
         <div>
-          <img src="https://i.imgur.com/NvMO05y.png" id="homepage-image" />
+          <img src="https://i.imgur.com/NvMO05y.png" id="homepage-image" alt="computer with a quote and cup of pencils"/>
         </div>
         <h2> Every Event Tells Your Story </h2>
 
@@ -79,7 +79,7 @@ function HomePage() {
             id="home-image"
           ></img>
         </div>
-        <h2>Checkout These Upcoming Tech Events!</h2>
+        <h2>Checkout These Tech Events!</h2>
         <Slideshow />
       </>
     );
