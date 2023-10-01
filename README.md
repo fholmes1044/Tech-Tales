@@ -20,6 +20,7 @@ EventTracker is an app that allows users to view events that have been attended 
 - Frontend: React 
 - Backend: Ruby on Rails 
 - Database: PostgreSQL
+- Styling : Microsoft Fluent UI
 
 ## Setup
 You can use the following commands to run the application:
